@@ -12,34 +12,25 @@ namespace Calibration
 {
     public partial class Form_Main : Form
     {
-        private string Text1 = "COM1";
+        private const int USER_SIZE = 10;
+        private UserInfo[] User;
+
         public Form_Main()
         {
             InitializeComponent();
+            InitUI();
 
-            this.Size = new Size(600, 800);
-            checkBox1.Dock = DockStyle.Fill;
-            checkBox1.BackColor = Color.FromArgb(255, 0, 0);
+            this.Size = new Size(469, 693);
+            this.StartPosition = FormStartPosition.CenterScreen;
+            this.FormBorderStyle = FormBorderStyle.FixedDialog;
 
-            textBox1.Enter += (s, e) => EnterTextBox();
-
-            Debug(textBox1.GetType());
+            User = new UserInfo[USER_SIZE];
         }
 
-        public void EnterTextBox()
+        private void Form_Main_Load(object sender, EventArgs e)
         {
 
         }
 
-        public void Debug(object text)
-        {
-            ToDebug.Text += $"{text}\n";
-        }
-
-        private void textBox2_Enter(object sender, EventArgs e)
-        {
-            Debug(sender);
-            Debug(e);
-        }
     }
 }
