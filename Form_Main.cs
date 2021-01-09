@@ -18,19 +18,31 @@ namespace Calibration
         public Form_Main()
         {
             InitializeComponent();
-            InitUI();
-
-            this.Size = new Size(469, 693);
-            this.StartPosition = FormStartPosition.CenterScreen;
-            this.FormBorderStyle = FormBorderStyle.FixedDialog;
-
-            User = new UserInfo[USER_SIZE];
+            Init();
         }
 
-        private void Form_Main_Load(object sender, EventArgs e)
+        public void Test()
+        {
+            for (var i = 0; i < 3; i++)
+            {
+                DeviceName[i].Enter += (s, e) => DeviceNameEnter(i);
+                DeviceName[i].Leave += (s, e) => DeviceNameLeave(i);
+            }
+        }
+
+        private void Init()
+        {
+            InitUI();
+        }
+
+        private void button_Create_Click(object sender, EventArgs e)
         {
 
         }
 
+        private void button_Connect_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
