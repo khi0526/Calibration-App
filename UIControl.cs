@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace Calibration
 {
@@ -16,7 +13,7 @@ namespace Calibration
         private List<ComboBox> Port = new List<ComboBox>();
         private List<TextBox> Value = new List<TextBox>();
 
-        private int[] test = new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+        private bool ConnectCheckEnable = true;
 
         private void InitUI()
         {
@@ -26,6 +23,11 @@ namespace Calibration
             Size = new Size(520, 700);
             StartPosition = FormStartPosition.CenterScreen;
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            /////////////////////////////////////////////////////////////////////////////
+            // GroupBoxs
+            /////////////////////////////////////////////////////////////////////////////
+            groupBox_FileData.Enabled = false;
+            groupBox_Config.Enabled = false;
             /////////////////////////////////////////////////////////////////////////////
             // Labels
             /////////////////////////////////////////////////////////////////////////////
@@ -38,12 +40,14 @@ namespace Calibration
             /////////////////////////////////////////////////////////////////////////////
             // Buttons
             /////////////////////////////////////////////////////////////////////////////
-            //button_Create.
+            button_Create.Text = "Create New Ver.";
+            button_Create.Enabled = false;
+            button_Save.Text = "Save";
             button_Connect.Text = "Connect";
+            button_Connect.Enabled = false;
             button_Apply.Text = "Apply";
-            button_Start.Anchor = AnchorStyles.Top;
-            button_Start.Anchor = AnchorStyles.Bottom;
             button_Start.Text = "Calibration Start";
+            button_Start.Enabled = false;
             /////////////////////////////////////////////////////////////////////////////
             // Connect CheckBox
             /////////////////////////////////////////////////////////////////////////////
@@ -61,6 +65,7 @@ namespace Calibration
             for (var i = 0; i < USER_SIZE; i++)
             {
                 ConnectCheck[i].CheckAlign = ContentAlignment.MiddleCenter;
+                ConnectCheck[i].CheckedChanged += ConnectCheck_ClickChanged;
                 ConnectCheck[i].Dock = DockStyle.Fill;
                 ConnectCheck[i].Enabled = false;
             }
@@ -83,9 +88,9 @@ namespace Calibration
                 DeviceName[i].Dock = DockStyle.Fill;
                 DeviceName[i].ForeColor = SystemColors.ScrollBar;
                 DeviceName[i].Text = "";
-                DeviceName[i].Enabled = false;
+                //DeviceName[i].Enabled = false;
             }
-            
+
             DeviceName[0].Enter += (s, e) => DeviceNameEnter(0);
             DeviceName[1].Enter += (s, e) => DeviceNameEnter(1);
             DeviceName[2].Enter += (s, e) => DeviceNameEnter(2);
@@ -108,7 +113,7 @@ namespace Calibration
             DeviceName[8].Leave += (s, e) => DeviceNameLeave(8);
             DeviceName[9].Leave += (s, e) => DeviceNameLeave(9);
             /////////////////////////////////////////////////////////////////////////////
-            // MacAddress ComboBox
+            // MacAddress TextBox
             /////////////////////////////////////////////////////////////////////////////
             Address.Add(textBox1);
             Address.Add(textBox2);
@@ -126,7 +131,7 @@ namespace Calibration
                 Address[i].Dock = DockStyle.Fill;
                 Address[i].Name = $"textBox_Address{i}";    //임시
                 Address[i].Text = "";
-                Address[i].Enabled = false;
+                //Address[i].Enabled = false;
             }
             /////////////////////////////////////////////////////////////////////////////
             // Port ComboBox
@@ -142,11 +147,12 @@ namespace Calibration
             Port.Add(comboBox_Port9);
             Port.Add(comboBox_Port10);
 
-            for(var i = 0; i < USER_SIZE; i++)
+            for (var i = 0; i < USER_SIZE; i++)
             {
                 Port[i].Dock = DockStyle.Fill;
+                Port[i].DropDownStyle = ComboBoxStyle.DropDownList;
                 Port[i].Text = "";
-                Port[i].Enabled = false;
+                //Port[i].Enabled = false;
             }
             /////////////////////////////////////////////////////////////////////////////
             // CalibrationValue TextBox
@@ -166,26 +172,134 @@ namespace Calibration
             {
                 Value[i].Dock = DockStyle.Fill;
                 Value[i].Text = "";
-                Value[i].Enabled = false;
+                Value[i].TextAlign = HorizontalAlignment.Right;
+            }
+        }
+
+        private void NewFileUI()
+        {
+            groupBox_FileData.Focus();
+
+            groupBox_FileData.Enabled = true;
+            button_Save.Enabled = true;
+
+            for (var i = 0; i < USER_SIZE; i++)
+            {
+                ConnectCheck[i].Checked = false;
+                ConnectCheck[i].Enabled = false;
+                DeviceName[i].Enabled = true;
+                DeviceName[i].ForeColor = SystemColors.ScrollBar;
+                DeviceName[i].ReadOnly = false;
+                DeviceName[i].Text = "Device";
+                Address[i].Enabled = true;
+                Address[i].ReadOnly = false;
+                Address[i].Text = "";
+                Port[i].Enabled = true;
+                Port[i].Text = "";
+                Value[i].Enabled = true;
+                Value[i].ReadOnly = false;
+                Value[i].Text = "";
+            }
+        }
+
+        private void CreateClickUI()
+        {
+            for (var i = 0; i < USER_SIZE; i++)
+            {
+                if (User[i].Name == "")
+                    continue;
+
+                Value[i].ReadOnly = false;
             }
         }
 
         private void DeviceNameEnter(int index)
         {
-            if(DeviceName[index].Text == "Device")
+            if (User[index].Name == "")
             {
-                DeviceName[index].Text = "";
                 DeviceName[index].ForeColor = SystemColors.ControlText;
+                DeviceName[index].Text = "";
             }
         }
 
         private void DeviceNameLeave(int index)
         {
+            User[index].Name = DeviceName[index].Text;
+
             if (DeviceName[index].TextLength == 0)
             {
-                DeviceName[index].Text = "Device";
                 DeviceName[index].ForeColor = SystemColors.ScrollBar;
+                DeviceName[index].Text = "Device";
             }
         }
+
+        private void SaveClickUI()
+        {
+            //this.ActiveControl = groupBox_FileData;
+            //Address[9].Focus();
+
+            for (var i = 0; i < USER_SIZE; i++)
+            {
+                if (User[i].Name == "")
+                {
+                    DeviceName[i].Text = "";
+                    Address[i].Text = "";
+                    Port[i].Text = "";
+                    Value[i].Text = "";
+                }
+                else
+                {
+                    ConnectCheck[i].Enabled = true;
+                    DeviceName[i].ReadOnly = true;
+                    Address[i].ReadOnly = true;
+                    Value[i].ReadOnly = true;
+                }
+            }
+
+            button_Save.Enabled = false;
+            button_Create.Enabled = true;
+        }
+
+        private void ConnectCheck_ClickChanged(object sender, EventArgs e)
+        {
+            if (!ConnectCheckEnable)
+            {
+                for (var i = 0; i < USER_SIZE; i++)
+                {
+                    if (!User[i].Using)
+                        continue;
+                    ConnectCheck[i].Enabled = true;
+                }
+                ConnectCheckEnable = true;
+            }
+            else
+            {
+                int Check = 0;
+
+
+                for (var i = 0; i < USER_SIZE; i++)
+                {
+                    if (ConnectCheck[i].Checked)
+                    {
+                        Check++;
+
+                        if (Check == 2)
+                        {
+                            for (var j = 0; j < USER_SIZE; j++)
+                                if (!ConnectCheck[j].Checked)
+                                    ConnectCheck[j].Enabled = false;
+                            ConnectCheckEnable = false;
+                            break;
+                        }
+                    }
+                }
+
+                if (Check == 0)
+                    button_Connect.Enabled = false;
+                else
+                    button_Connect.Enabled = true;
+            }
+        }
+
     }
 }
