@@ -106,6 +106,7 @@ namespace Calibration
             this.checkBox_5cm = new System.Windows.Forms.CheckBox();
             this.checkBox_3cm = new System.Windows.Forms.CheckBox();
             this.button_Start = new System.Windows.Forms.Button();
+            this.button_Save = new System.Windows.Forms.Button();
             this.menuStrip.SuspendLayout();
             this.tableLayoutPanel_Main.SuspendLayout();
             this.groupBox_FileData.SuspendLayout();
@@ -140,14 +141,15 @@ namespace Calibration
             // 
             this.ToolStripMenuItem_File_New.Name = "ToolStripMenuItem_File_New";
             this.ToolStripMenuItem_File_New.ShortcutKeyDisplayString = "n";
-            this.ToolStripMenuItem_File_New.Size = new System.Drawing.Size(117, 22);
+            this.ToolStripMenuItem_File_New.Size = new System.Drawing.Size(180, 22);
             this.ToolStripMenuItem_File_New.Text = "New";
+            this.ToolStripMenuItem_File_New.Click += new System.EventHandler(this.ToolStripMenuItem_File_New_Click);
             // 
             // ToolStripMenuItem_File_Open
             // 
             this.ToolStripMenuItem_File_Open.Name = "ToolStripMenuItem_File_Open";
             this.ToolStripMenuItem_File_Open.ShortcutKeyDisplayString = "o";
-            this.ToolStripMenuItem_File_Open.Size = new System.Drawing.Size(117, 22);
+            this.ToolStripMenuItem_File_Open.Size = new System.Drawing.Size(180, 22);
             this.ToolStripMenuItem_File_Open.Text = "Open";
             // 
             // ToolStripMenuItem_Help
@@ -175,6 +177,7 @@ namespace Calibration
             // 
             // groupBox_FileData
             // 
+            this.groupBox_FileData.Controls.Add(this.button_Save);
             this.groupBox_FileData.Controls.Add(this.button_Create);
             this.groupBox_FileData.Controls.Add(this.tableLayoutPanel_Data);
             this.groupBox_FileData.Controls.Add(this.label_FileName);
@@ -806,13 +809,24 @@ namespace Calibration
             // 
             // button_Start
             // 
-            this.button_Start.Location = new System.Drawing.Point(3, 564);
+            this.button_Start.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.button_Start.Location = new System.Drawing.Point(123, 564);
             this.button_Start.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             this.button_Start.Name = "button_Start";
-            this.button_Start.Size = new System.Drawing.Size(159, 36);
+            this.button_Start.Size = new System.Drawing.Size(233, 52);
             this.button_Start.TabIndex = 3;
             this.button_Start.Text = "Calibration Start";
             this.button_Start.UseVisualStyleBackColor = true;
+            // 
+            // button_Save
+            // 
+            this.button_Save.Location = new System.Drawing.Point(280, 401);
+            this.button_Save.Name = "button_Save";
+            this.button_Save.Size = new System.Drawing.Size(90, 23);
+            this.button_Save.TabIndex = 6;
+            this.button_Save.Text = "Save";
+            this.button_Save.UseVisualStyleBackColor = true;
+            this.button_Save.Click += new System.EventHandler(this.button_Save_Click);
             // 
             // Form_Main
             // 
@@ -920,5 +934,6 @@ namespace Calibration
         private System.Windows.Forms.TextBox textBox8;
         private System.Windows.Forms.TextBox textBox9;
         private System.Windows.Forms.TextBox textBox10;
+        private System.Windows.Forms.Button button_Save;
     }
 }
