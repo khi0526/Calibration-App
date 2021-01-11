@@ -7,13 +7,18 @@ namespace Calibration
 {
     partial class Form_Main : Form
     {
-        private List<CheckBox> ConnectCheck = new List<CheckBox>();
-        private List<TextBox> DeviceName = new List<TextBox>();
-        private List<TextBox> Address = new List<TextBox>();
-        private List<ComboBox> Port = new List<ComboBox>();
-        private List<TextBox> Value = new List<TextBox>();
+        private readonly List<CheckBox> ConnectCheck = new List<CheckBox>();
+        private readonly List<TextBox> DeviceName = new List<TextBox>();
+        private readonly List<MaskedTextBox> Address = new List<MaskedTextBox>();
+        private readonly List<ComboBox> Port = new List<ComboBox>();
+        private readonly List<TextBox> Value = new List<TextBox>();
+        private readonly List<RadioButton> Distance = new List<RadioButton>();
+        private readonly List<RadioButton> Dose = new List<RadioButton>();
 
-        private bool ConnectCheckEnable = true;
+        private readonly string[] DistanceText = new string[3] { "3cm", "4cm", "5cm" };
+        private readonly string[] DoseText = new string[3] { "10μCi", "34μCi", "51μCi" };
+
+        private bool connectCheckEnable = true;
 
         private void InitUI()
         {
@@ -23,6 +28,7 @@ namespace Calibration
             Size = new Size(520, 700);
             StartPosition = FormStartPosition.CenterScreen;
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
             /////////////////////////////////////////////////////////////////////////////
             // GroupBoxs
             /////////////////////////////////////////////////////////////////////////////
@@ -32,6 +38,7 @@ namespace Calibration
             // Labels
             /////////////////////////////////////////////////////////////////////////////
             label_FileName.Text = "File Name :";
+            linkLabel_FileName.Text = "";
             label_Use.Dock = DockStyle.Fill;
             label_DeviceName.Dock = DockStyle.Fill;
             label_Address.Dock = DockStyle.Fill;
@@ -46,6 +53,7 @@ namespace Calibration
             button_Connect.Text = "Connect";
             button_Connect.Enabled = false;
             button_Apply.Text = "Apply";
+            button_Apply.Enabled = false;
             button_Start.Text = "Calibration Start";
             button_Start.Enabled = false;
             /////////////////////////////////////////////////////////////////////////////
@@ -62,13 +70,14 @@ namespace Calibration
             ConnectCheck.Add(checkBox_Use9);
             ConnectCheck.Add(checkBox_Use10);
 
-            for (var i = 0; i < USER_SIZE; i++)
+            for (var i = 0; i < TOTAL_SIZE; i++)
             {
                 ConnectCheck[i].CheckAlign = ContentAlignment.MiddleCenter;
-                ConnectCheck[i].CheckedChanged += ConnectCheck_ClickChanged;
                 ConnectCheck[i].Dock = DockStyle.Fill;
                 ConnectCheck[i].Enabled = false;
             }
+
+            ConnectCheck[0].CheckedChanged += (s, e) => ConnectCheck_ClickChanged(0);
             /////////////////////////////////////////////////////////////////////////////
             // DeviceName TextBox
             /////////////////////////////////////////////////////////////////////////////
@@ -83,12 +92,12 @@ namespace Calibration
             DeviceName.Add(textBox_DeviceName9);
             DeviceName.Add(textBox_DeviceName10);
 
-            for (var i = 0; i < USER_SIZE; i++)
+            for (var i = 0; i < TOTAL_SIZE; i++)
             {
                 DeviceName[i].Dock = DockStyle.Fill;
+                DeviceName[i].Enabled = false;
                 DeviceName[i].ForeColor = SystemColors.ScrollBar;
                 DeviceName[i].Text = "";
-                //DeviceName[i].Enabled = false;
             }
 
             DeviceName[0].Enter += (s, e) => DeviceNameEnter(0);
@@ -113,26 +122,49 @@ namespace Calibration
             DeviceName[8].Leave += (s, e) => DeviceNameLeave(8);
             DeviceName[9].Leave += (s, e) => DeviceNameLeave(9);
             /////////////////////////////////////////////////////////////////////////////
-            // MacAddress TextBox
+            // MacAddress MaskedTextBox
             /////////////////////////////////////////////////////////////////////////////
-            Address.Add(textBox1);
-            Address.Add(textBox2);
-            Address.Add(textBox3);
-            Address.Add(textBox4);
-            Address.Add(textBox5);
-            Address.Add(textBox6);
-            Address.Add(textBox7);
-            Address.Add(textBox8);
-            Address.Add(textBox9);
-            Address.Add(textBox10);
-
-            for (var i = 0; i < USER_SIZE; i++)
+            Address.Add(maskedTextBox1);
+            Address.Add(maskedTextBox2);
+            Address.Add(maskedTextBox3);
+            Address.Add(maskedTextBox4);
+            Address.Add(maskedTextBox5);
+            Address.Add(maskedTextBox6);
+            Address.Add(maskedTextBox7);
+            Address.Add(maskedTextBox8);
+            Address.Add(maskedTextBox9);
+            Address.Add(maskedTextBox10);
+            
+            for (var i = 0; i < TOTAL_SIZE; i++)
             {
                 Address[i].Dock = DockStyle.Fill;
-                Address[i].Name = $"textBox_Address{i}";    //임시
+                Address[i].Enabled = false;
+                Address[i].Mask = "";
+                Address[i].Name = $"maskedTextBox_Address{i}";    //임시
                 Address[i].Text = "";
-                //Address[i].Enabled = false;
             }
+
+            Address[0].Enter += (s, e) => AddressEnter(0);
+            Address[1].Enter += (s, e) => AddressEnter(1);
+            Address[2].Enter += (s, e) => AddressEnter(2);
+            Address[3].Enter += (s, e) => AddressEnter(3);
+            Address[4].Enter += (s, e) => AddressEnter(4);
+            Address[5].Enter += (s, e) => AddressEnter(5);
+            Address[6].Enter += (s, e) => AddressEnter(6);
+            Address[7].Enter += (s, e) => AddressEnter(7);
+            Address[8].Enter += (s, e) => AddressEnter(8);
+            Address[9].Enter += (s, e) => AddressEnter(9);
+
+            Address[0].Leave += (s, e) => AddressLeave(0);
+            Address[1].Leave += (s, e) => AddressLeave(1);
+            Address[2].Leave += (s, e) => AddressLeave(2);
+            Address[3].Leave += (s, e) => AddressLeave(3);
+            Address[4].Leave += (s, e) => AddressLeave(4);
+            Address[5].Leave += (s, e) => AddressLeave(5);
+            Address[6].Leave += (s, e) => AddressLeave(6);
+            Address[7].Leave += (s, e) => AddressLeave(7);
+            Address[8].Leave += (s, e) => AddressLeave(8);
+            Address[9].Leave += (s, e) => AddressLeave(9);
             /////////////////////////////////////////////////////////////////////////////
             // Port ComboBox
             /////////////////////////////////////////////////////////////////////////////
@@ -147,12 +179,13 @@ namespace Calibration
             Port.Add(comboBox_Port9);
             Port.Add(comboBox_Port10);
 
-            for (var i = 0; i < USER_SIZE; i++)
+            for (var i = 0; i < TOTAL_SIZE; i++)
             {
                 Port[i].Dock = DockStyle.Fill;
                 Port[i].DropDownStyle = ComboBoxStyle.DropDownList;
+                Port[i].Enabled = false;
+                Port[i].Items.AddRange(System.IO.Ports.SerialPort.GetPortNames());
                 Port[i].Text = "";
-                //Port[i].Enabled = false;
             }
             /////////////////////////////////////////////////////////////////////////////
             // CalibrationValue TextBox
@@ -168,48 +201,132 @@ namespace Calibration
             Value.Add(textBox_Value9);
             Value.Add(textBox_Value10);
 
-            for (var i = 0; i < USER_SIZE; i++)
+            for (var i = 0; i < TOTAL_SIZE; i++)
             {
                 Value[i].Dock = DockStyle.Fill;
+                Value[i].Enabled = false;
                 Value[i].Text = "";
                 Value[i].TextAlign = HorizontalAlignment.Right;
             }
+
+            Value[0].KeyPress += (s, e) => ValueKeyDown(e, 0);
+            Value[1].KeyPress += (s, e) => ValueKeyDown(e, 1);
+            Value[2].KeyPress += (s, e) => ValueKeyDown(e, 2);
+            Value[3].KeyPress += (s, e) => ValueKeyDown(e, 3);
+            Value[4].KeyPress += (s, e) => ValueKeyDown(e, 4);
+            Value[5].KeyPress += (s, e) => ValueKeyDown(e, 5);
+            Value[6].KeyPress += (s, e) => ValueKeyDown(e, 6);
+            Value[7].KeyPress += (s, e) => ValueKeyDown(e, 7);
+            Value[8].KeyPress += (s, e) => ValueKeyDown(e, 8);
+            Value[9].KeyPress += (s, e) => ValueKeyDown(e, 9);
+
+            Value[0].TextChanged += (s, e) => ValueTextChanged(0);
+            Value[1].TextChanged += (s, e) => ValueTextChanged(1);
+            Value[2].TextChanged += (s, e) => ValueTextChanged(2);
+            Value[3].TextChanged += (s, e) => ValueTextChanged(3);
+            Value[4].TextChanged += (s, e) => ValueTextChanged(4);
+            Value[5].TextChanged += (s, e) => ValueTextChanged(5);
+            Value[6].TextChanged += (s, e) => ValueTextChanged(6);
+            Value[7].TextChanged += (s, e) => ValueTextChanged(7);
+            Value[8].TextChanged += (s, e) => ValueTextChanged(8);
+            Value[9].TextChanged += (s, e) => ValueTextChanged(9);
+            /////////////////////////////////////////////////////////////////////////////
+            // Distance RadioButton
+            /////////////////////////////////////////////////////////////////////////////
+            Distance.Add(radioButton_3cm);
+            Distance.Add(radioButton_4cm);
+            Distance.Add(radioButton_5cm);
+
+            Distance[0].CheckedChanged += (s, e) => DistanceCheck_ClickChanged(0);
+            Distance[1].CheckedChanged += (s, e) => DistanceCheck_ClickChanged(1);
+            Distance[2].CheckedChanged += (s, e) => DistanceCheck_ClickChanged(2);
+            /////////////////////////////////////////////////////////////////////////////
+            // Dose RadioButton
+            /////////////////////////////////////////////////////////////////////////////
+            Dose.Add(radioButton_10μCi);
+            Dose.Add(radioButton_34μCi);
+            Dose.Add(radioButton_51μCi);
+
+            Dose[0].CheckedChanged += (s, e) => DoseCheck_ClickChanged(0);
+            Dose[1].CheckedChanged += (s, e) => DoseCheck_ClickChanged(1);
+            Dose[2].CheckedChanged += (s, e) => DoseCheck_ClickChanged(2);
+        }
+
+        private void UpdateForm(MethodInvoker method)
+        {
+            if(InvokeRequired)
+            {
+                method.Invoke();
+            }
+            else
+                BeginInvoke(method);
         }
 
         private void NewFileUI()
         {
-            groupBox_FileData.Focus();
-
             groupBox_FileData.Enabled = true;
             button_Save.Enabled = true;
+            linkLabel_FileName.Text = $"{fileName}{version}";
 
-            for (var i = 0; i < USER_SIZE; i++)
+            for (var i = 0; i < TOTAL_SIZE; i++)
             {
-                ConnectCheck[i].Checked = false;
-                ConnectCheck[i].Enabled = false;
-                DeviceName[i].Enabled = true;
-                DeviceName[i].ForeColor = SystemColors.ScrollBar;
-                DeviceName[i].ReadOnly = false;
-                DeviceName[i].Text = "Device";
-                Address[i].Enabled = true;
-                Address[i].ReadOnly = false;
-                Address[i].Text = "";
-                Port[i].Enabled = true;
-                Port[i].Text = "";
-                Value[i].Enabled = true;
-                Value[i].ReadOnly = false;
-                Value[i].Text = "";
+                if (i < usingDevices)
+                {
+                    ConnectCheck[i].Checked = false;
+                    ConnectCheck[i].Enabled = false;
+                    DeviceName[i].Enabled = true;
+                    DeviceName[i].ForeColor = SystemColors.ScrollBar;
+                    DeviceName[i].ReadOnly = false;
+                    DeviceName[i].Text = $"Device{i + 1}";
+                    Address[i].Enabled = true;
+                    Address[i].Mask = "AA:AA:AA:AA:AA:AA";
+                    Address[i].ReadOnly = false;
+                    if (Address[i].Focused)
+                    {
+                        Address[i].ForeColor = SystemColors.ControlText;
+                        Address[i].Text = "";
+                    }
+                    else
+                    {
+                        Address[i].ForeColor = SystemColors.ScrollBar;
+                        Address[i].Text = "AA:BB:CC:DD:EE:FF";
+                    }
+                    Port[i].Enabled = true;
+                    Port[i].Text = "";
+                    Value[i].Enabled = true;
+                    Value[i].ReadOnly = false;
+                    Value[i].Text = "";
+                }
+                else
+                {
+                    ConnectCheck[i].Enabled = false;
+                    DeviceName[i].Enabled = false;
+                    DeviceName[i].Text = "";
+                    Address[i].Enabled = false;
+                    Address[i].Mask = "";
+                    Address[i].Text = "";
+                    Port[i].Enabled = false;
+                    Port[i].Text = "";
+                    Value[i].Enabled = false;
+                    Value[i].Text = "";
+                }
             }
         }
 
         private void CreateClickUI()
         {
-            for (var i = 0; i < USER_SIZE; i++)
-            {
-                if (User[i].Name == "")
-                    continue;
+            linkLabel_FileName.Text = $"{fileName}{version}";
+            button_Save.Enabled = true;
+            button_Connect.Enabled = false;
 
-                Value[i].ReadOnly = false;
+            for (var i = 0; i < usingDevices; i++)
+            {
+                if (User[i].Using)
+                {
+                    ConnectCheck[i].Checked = false;
+                    ConnectCheck[i].Enabled = false;
+                    Value[i].ReadOnly = false;
+                }
             }
         }
 
@@ -229,77 +346,187 @@ namespace Calibration
             if (DeviceName[index].TextLength == 0)
             {
                 DeviceName[index].ForeColor = SystemColors.ScrollBar;
-                DeviceName[index].Text = "Device";
+                DeviceName[index].Text = $"Device{index + 1}";
             }
+        }
+
+        private void AddressEnter(int index)
+        {
+            if (User[index].Address == "")
+            {
+                Address[index].ForeColor = SystemColors.ControlText;
+                Address[index].Text = "";
+            }
+        }
+
+        private void AddressLeave(int index)
+        {
+            if (Address[index].Text == "  :  :  :  :  :")
+            {
+                User[index].Address = "";
+                Address[index].ForeColor = SystemColors.ScrollBar;
+                Address[index].Text = "AA:BB:CC:DD:EE:FF";
+            }
+            else
+                User[index].Address = Address[index].Text;
+        }
+
+        private void ValueKeyDown(KeyPressEventArgs e, int index)
+        {
+            if (!char.IsDigit(e.KeyChar) || e.KeyChar == Convert.ToChar(Keys.Decimal))
+                e.Handled = true;
         }
 
         private void SaveClickUI()
         {
-            //this.ActiveControl = groupBox_FileData;
-            //Address[9].Focus();
-
-            for (var i = 0; i < USER_SIZE; i++)
+            for (var i = 0; i < usingDevices; i++)
             {
-                if (User[i].Name == "")
-                {
-                    DeviceName[i].Text = "";
-                    Address[i].Text = "";
-                    Port[i].Text = "";
-                    Value[i].Text = "";
-                }
-                else
-                {
-                    ConnectCheck[i].Enabled = true;
-                    DeviceName[i].ReadOnly = true;
-                    Address[i].ReadOnly = true;
-                    Value[i].ReadOnly = true;
-                }
+                ConnectCheck[i].Enabled = true;
+                DeviceName[i].ReadOnly = true;
+                Address[i].ReadOnly = true;
+                Value[i].ReadOnly = true;
             }
 
             button_Save.Enabled = false;
             button_Create.Enabled = true;
         }
 
-        private void ConnectCheck_ClickChanged(object sender, EventArgs e)
+        private void ConnectCheckClickUI()
         {
-            if (!ConnectCheckEnable)
-            {
-                for (var i = 0; i < USER_SIZE; i++)
-                {
-                    if (!User[i].Using)
-                        continue;
-                    ConnectCheck[i].Enabled = true;
-                }
-                ConnectCheckEnable = true;
-            }
-            else
-            {
-                int Check = 0;
+            int Check = 0;
 
-
-                for (var i = 0; i < USER_SIZE; i++)
+            for (var i = 0; i < usingDevices; i++)
+            {
+                if (User[i].Connecting)
                 {
-                    if (ConnectCheck[i].Checked)
+                    Check++;
+
+                    if (Check == 2)
                     {
-                        Check++;
-
-                        if (Check == 2)
-                        {
-                            for (var j = 0; j < USER_SIZE; j++)
-                                if (!ConnectCheck[j].Checked)
-                                    ConnectCheck[j].Enabled = false;
-                            ConnectCheckEnable = false;
-                            break;
-                        }
+                        for (var j = 0; j < usingDevices; j++)
+                            if (!ConnectCheck[j].Checked)
+                                ConnectCheck[j].Enabled = false;
+                        break;
                     }
                 }
+            }
 
-                if (Check == 0)
-                    button_Connect.Enabled = false;
-                else
-                    button_Connect.Enabled = true;
+            if (Check < 2)
+            {
+                for (var i = 0; i < usingDevices; i++)
+                    if (!ConnectCheck[i].Checked)
+                        ConnectCheck[i].Enabled = true;
+            }
+
+            if (Check == 0)
+                button_Connect.Enabled = false;
+            else
+                button_Connect.Enabled = true;
+        }
+
+        private void ConnectStartUI()
+        {
+            this.Text = "Connecting...";
+            button_Connect.Enabled = false;
+            button_Connect.Text = "Connecting...";
+
+            for (var i = 0; i < usingDevices; i++)
+            {
+                ConnectCheck[i].Enabled = false;
             }
         }
 
+        private void ConnectFinishUI()
+        {
+            this.Text = "Calibration App";
+            button_Connect.Enabled = true;
+            button_Connect.Text = "Disconnect";
+            groupBox_Config.Enabled = true;
+        }
+
+        private void DisconnectStartUI()
+        {
+            this.Text = "Disconnecting...";
+            button_Connect.Enabled = false;
+            button_Connect.Text = "Disconnecting...";
+            groupBox_Config.Enabled = false;
+
+            for(var i = 0; i < 3; i++)
+            {
+                Distance[i].Checked = false;
+                Distance[i].Text = DistanceText[i];
+                Dose[i].Checked = false;
+                Dose[i].Text = DoseText[i];
+            }
+        }
+
+        private void DisconnectFinishUI()
+        {
+            this.Text = "Calibration App";
+            button_Connect.Enabled = true;
+            button_Connect.Text = "Connect";
+
+            for (var i = 0; i < usingDevices; i++)
+            {
+                ConnectCheck[i].Enabled = true;
+            }
+        }
+
+        private void DistanceCheck_ClickChanged(int index)
+        {
+            distanceCheckIndex = index;
+            if(Distance[index].Checked)
+                for(var i = 0; i < usingDevices; i++)
+                {
+                    if (!User[i].Connecting)
+                        continue;
+
+                    for (var j = 0; j < 3; j++)
+                    {
+                        Dose[j].Text = DoseText[j];
+                        if (!User[i].CalibrationComplete[index, j])
+                            Dose[j].Text = "*" + Dose[j].Text;
+                    }
+                }
+
+            if (distanceCheckIndex >= 0 && doseCheckIndex >= 0)
+                button_Apply.Enabled = true;
+            else
+                button_Apply.Enabled = false;
+
+            button_Start.Enabled = false;
+        }
+
+        private void DoseCheck_ClickChanged(int index)
+        {
+            doseCheckIndex = index;
+            if (Dose[index].Checked)
+                for (var i = 0; i < usingDevices; i++)
+                {
+                    if (!User[i].Connecting)
+                        continue;
+
+                    for (var j = 0; j < 3; j++)
+                    {
+                        Distance[j].Text = DistanceText[j];
+
+                        if (!User[i].CalibrationComplete[j, index])
+                            Distance[j].Text = "*" + Distance[j].Text;
+                    }
+                }
+
+            if (distanceCheckIndex >= 0 && doseCheckIndex >= 0)
+                button_Apply.Enabled = true;
+            else
+                button_Apply.Enabled = false;
+
+            button_Start.Enabled = false;
+        }
+
+        private void ApplyClickUI()
+        {
+            button_Apply.Enabled = false;
+            button_Start.Enabled = true;
+        }
     }
 }

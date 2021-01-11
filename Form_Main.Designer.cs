@@ -36,6 +36,8 @@ namespace Calibration
             this.ToolStripMenuItem_Help = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel_Main = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox_FileData = new System.Windows.Forms.GroupBox();
+            this.linkLabel_FileName = new System.Windows.Forms.LinkLabel();
+            this.button_Save = new System.Windows.Forms.Button();
             this.button_Create = new System.Windows.Forms.Button();
             this.tableLayoutPanel_Data = new System.Windows.Forms.TableLayoutPanel();
             this.label_Use = new System.Windows.Forms.Label();
@@ -82,31 +84,30 @@ namespace Calibration
             this.textBox_Value8 = new System.Windows.Forms.TextBox();
             this.textBox_Value9 = new System.Windows.Forms.TextBox();
             this.textBox_Value10 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.textBox10 = new System.Windows.Forms.TextBox();
             this.label_Port = new System.Windows.Forms.Label();
             this.label_FileName = new System.Windows.Forms.Label();
             this.button_Connect = new System.Windows.Forms.Button();
             this.groupBox_Config = new System.Windows.Forms.GroupBox();
             this.button_Apply = new System.Windows.Forms.Button();
             this.groupBox_Dose = new System.Windows.Forms.GroupBox();
-            this.checkBox_51μCi = new System.Windows.Forms.CheckBox();
-            this.checkBox_34μCi = new System.Windows.Forms.CheckBox();
-            this.checkBox_10μCi = new System.Windows.Forms.CheckBox();
+            this.radioButton_10μCi = new System.Windows.Forms.RadioButton();
+            this.radioButton_34μCi = new System.Windows.Forms.RadioButton();
+            this.radioButton_51μCi = new System.Windows.Forms.RadioButton();
             this.groupBox_Distance = new System.Windows.Forms.GroupBox();
-            this.checkBox_4cm = new System.Windows.Forms.CheckBox();
-            this.checkBox_5cm = new System.Windows.Forms.CheckBox();
-            this.checkBox_3cm = new System.Windows.Forms.CheckBox();
+            this.radioButton_5cm = new System.Windows.Forms.RadioButton();
+            this.radioButton_3cm = new System.Windows.Forms.RadioButton();
+            this.radioButton_4cm = new System.Windows.Forms.RadioButton();
             this.button_Start = new System.Windows.Forms.Button();
-            this.button_Save = new System.Windows.Forms.Button();
+            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
+            this.maskedTextBox2 = new System.Windows.Forms.MaskedTextBox();
+            this.maskedTextBox3 = new System.Windows.Forms.MaskedTextBox();
+            this.maskedTextBox4 = new System.Windows.Forms.MaskedTextBox();
+            this.maskedTextBox5 = new System.Windows.Forms.MaskedTextBox();
+            this.maskedTextBox6 = new System.Windows.Forms.MaskedTextBox();
+            this.maskedTextBox7 = new System.Windows.Forms.MaskedTextBox();
+            this.maskedTextBox8 = new System.Windows.Forms.MaskedTextBox();
+            this.maskedTextBox9 = new System.Windows.Forms.MaskedTextBox();
+            this.maskedTextBox10 = new System.Windows.Forms.MaskedTextBox();
             this.menuStrip.SuspendLayout();
             this.tableLayoutPanel_Main.SuspendLayout();
             this.groupBox_FileData.SuspendLayout();
@@ -141,7 +142,7 @@ namespace Calibration
             // 
             this.ToolStripMenuItem_File_New.Name = "ToolStripMenuItem_File_New";
             this.ToolStripMenuItem_File_New.ShortcutKeyDisplayString = "n";
-            this.ToolStripMenuItem_File_New.Size = new System.Drawing.Size(180, 22);
+            this.ToolStripMenuItem_File_New.Size = new System.Drawing.Size(117, 22);
             this.ToolStripMenuItem_File_New.Text = "New";
             this.ToolStripMenuItem_File_New.Click += new System.EventHandler(this.ToolStripMenuItem_File_New_Click);
             // 
@@ -149,8 +150,9 @@ namespace Calibration
             // 
             this.ToolStripMenuItem_File_Open.Name = "ToolStripMenuItem_File_Open";
             this.ToolStripMenuItem_File_Open.ShortcutKeyDisplayString = "o";
-            this.ToolStripMenuItem_File_Open.Size = new System.Drawing.Size(180, 22);
+            this.ToolStripMenuItem_File_Open.Size = new System.Drawing.Size(117, 22);
             this.ToolStripMenuItem_File_Open.Text = "Open";
+            this.ToolStripMenuItem_File_Open.Click += new System.EventHandler(this.ToolStripMenuItem_File_Open_Click);
             // 
             // ToolStripMenuItem_Help
             // 
@@ -177,6 +179,7 @@ namespace Calibration
             // 
             // groupBox_FileData
             // 
+            this.groupBox_FileData.Controls.Add(this.linkLabel_FileName);
             this.groupBox_FileData.Controls.Add(this.button_Save);
             this.groupBox_FileData.Controls.Add(this.button_Create);
             this.groupBox_FileData.Controls.Add(this.tableLayoutPanel_Data);
@@ -188,6 +191,26 @@ namespace Calibration
             this.groupBox_FileData.TabIndex = 1;
             this.groupBox_FileData.TabStop = false;
             this.groupBox_FileData.Text = "File Data";
+            // 
+            // linkLabel_FileName
+            // 
+            this.linkLabel_FileName.AutoSize = true;
+            this.linkLabel_FileName.Location = new System.Drawing.Point(83, 50);
+            this.linkLabel_FileName.Name = "linkLabel_FileName";
+            this.linkLabel_FileName.Size = new System.Drawing.Size(162, 12);
+            this.linkLabel_FileName.TabIndex = 7;
+            this.linkLabel_FileName.TabStop = true;
+            this.linkLabel_FileName.Text = "2021-01-09 Calibration Ver.1";
+            // 
+            // button_Save
+            // 
+            this.button_Save.Location = new System.Drawing.Point(240, 401);
+            this.button_Save.Name = "button_Save";
+            this.button_Save.Size = new System.Drawing.Size(110, 23);
+            this.button_Save.TabIndex = 6;
+            this.button_Save.Text = "Save";
+            this.button_Save.UseVisualStyleBackColor = true;
+            this.button_Save.Click += new System.EventHandler(this.button_Save_Click);
             // 
             // button_Create
             // 
@@ -251,17 +274,17 @@ namespace Calibration
             this.tableLayoutPanel_Data.Controls.Add(this.textBox_Value8, 4, 8);
             this.tableLayoutPanel_Data.Controls.Add(this.textBox_Value9, 4, 9);
             this.tableLayoutPanel_Data.Controls.Add(this.textBox_Value10, 4, 10);
-            this.tableLayoutPanel_Data.Controls.Add(this.textBox1, 2, 1);
-            this.tableLayoutPanel_Data.Controls.Add(this.textBox2, 2, 2);
-            this.tableLayoutPanel_Data.Controls.Add(this.textBox3, 2, 3);
-            this.tableLayoutPanel_Data.Controls.Add(this.textBox4, 2, 4);
-            this.tableLayoutPanel_Data.Controls.Add(this.textBox5, 2, 5);
-            this.tableLayoutPanel_Data.Controls.Add(this.textBox6, 2, 6);
-            this.tableLayoutPanel_Data.Controls.Add(this.textBox7, 2, 7);
-            this.tableLayoutPanel_Data.Controls.Add(this.textBox8, 2, 8);
-            this.tableLayoutPanel_Data.Controls.Add(this.textBox9, 2, 9);
-            this.tableLayoutPanel_Data.Controls.Add(this.textBox10, 2, 10);
             this.tableLayoutPanel_Data.Controls.Add(this.label_Port, 3, 0);
+            this.tableLayoutPanel_Data.Controls.Add(this.maskedTextBox1, 2, 1);
+            this.tableLayoutPanel_Data.Controls.Add(this.maskedTextBox2, 2, 2);
+            this.tableLayoutPanel_Data.Controls.Add(this.maskedTextBox3, 2, 3);
+            this.tableLayoutPanel_Data.Controls.Add(this.maskedTextBox4, 2, 4);
+            this.tableLayoutPanel_Data.Controls.Add(this.maskedTextBox5, 2, 5);
+            this.tableLayoutPanel_Data.Controls.Add(this.maskedTextBox6, 2, 6);
+            this.tableLayoutPanel_Data.Controls.Add(this.maskedTextBox7, 2, 7);
+            this.tableLayoutPanel_Data.Controls.Add(this.maskedTextBox8, 2, 8);
+            this.tableLayoutPanel_Data.Controls.Add(this.maskedTextBox9, 2, 9);
+            this.tableLayoutPanel_Data.Controls.Add(this.maskedTextBox10, 2, 10);
             this.tableLayoutPanel_Data.Location = new System.Drawing.Point(6, 65);
             this.tableLayoutPanel_Data.Name = "tableLayoutPanel_Data";
             this.tableLayoutPanel_Data.Padding = new System.Windows.Forms.Padding(2);
@@ -526,8 +549,6 @@ namespace Calibration
             this.textBox_Value1.Name = "textBox_Value1";
             this.textBox_Value1.Size = new System.Drawing.Size(65, 21);
             this.textBox_Value1.TabIndex = 45;
-            this.textBox_Value1.Text = "99.99";
-            this.textBox_Value1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label_Value
             // 
@@ -602,76 +623,6 @@ namespace Calibration
             this.textBox_Value10.Size = new System.Drawing.Size(65, 21);
             this.textBox_Value10.TabIndex = 55;
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(175, 35);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 21);
-            this.textBox1.TabIndex = 56;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(175, 65);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 21);
-            this.textBox2.TabIndex = 57;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(175, 95);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 21);
-            this.textBox3.TabIndex = 58;
-            // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(175, 125);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(100, 21);
-            this.textBox4.TabIndex = 59;
-            // 
-            // textBox5
-            // 
-            this.textBox5.Location = new System.Drawing.Point(175, 155);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(100, 21);
-            this.textBox5.TabIndex = 60;
-            // 
-            // textBox6
-            // 
-            this.textBox6.Location = new System.Drawing.Point(175, 185);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(100, 21);
-            this.textBox6.TabIndex = 61;
-            // 
-            // textBox7
-            // 
-            this.textBox7.Location = new System.Drawing.Point(175, 215);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(100, 21);
-            this.textBox7.TabIndex = 62;
-            // 
-            // textBox8
-            // 
-            this.textBox8.Location = new System.Drawing.Point(175, 245);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(100, 21);
-            this.textBox8.TabIndex = 63;
-            // 
-            // textBox9
-            // 
-            this.textBox9.Location = new System.Drawing.Point(175, 275);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(100, 21);
-            this.textBox9.TabIndex = 64;
-            // 
-            // textBox10
-            // 
-            this.textBox10.Location = new System.Drawing.Point(175, 305);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(100, 21);
-            this.textBox10.TabIndex = 65;
-            // 
             // label_Port
             // 
             this.label_Port.AutoSize = true;
@@ -687,16 +638,16 @@ namespace Calibration
             this.label_FileName.AutoSize = true;
             this.label_FileName.Location = new System.Drawing.Point(9, 50);
             this.label_FileName.Name = "label_FileName";
-            this.label_FileName.Size = new System.Drawing.Size(208, 12);
+            this.label_FileName.Size = new System.Drawing.Size(75, 12);
             this.label_FileName.TabIndex = 3;
-            this.label_FileName.Text = "File Name : 210109 Calibration Ver.1";
+            this.label_FileName.Text = "File Name : ";
             // 
             // button_Connect
             // 
             this.button_Connect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button_Connect.Location = new System.Drawing.Point(376, 401);
+            this.button_Connect.Location = new System.Drawing.Point(356, 401);
             this.button_Connect.Name = "button_Connect";
-            this.button_Connect.Size = new System.Drawing.Size(90, 23);
+            this.button_Connect.Size = new System.Drawing.Size(110, 23);
             this.button_Connect.TabIndex = 2;
             this.button_Connect.Text = "Connect";
             this.button_Connect.UseVisualStyleBackColor = true;
@@ -716,18 +667,19 @@ namespace Calibration
             // 
             // button_Apply
             // 
-            this.button_Apply.Location = new System.Drawing.Point(376, 87);
+            this.button_Apply.Location = new System.Drawing.Point(356, 87);
             this.button_Apply.Name = "button_Apply";
-            this.button_Apply.Size = new System.Drawing.Size(90, 23);
+            this.button_Apply.Size = new System.Drawing.Size(110, 23);
             this.button_Apply.TabIndex = 2;
             this.button_Apply.Text = "Apply";
             this.button_Apply.UseVisualStyleBackColor = true;
+            this.button_Apply.Click += new System.EventHandler(this.button_Apply_Click);
             // 
             // groupBox_Dose
             // 
-            this.groupBox_Dose.Controls.Add(this.checkBox_51μCi);
-            this.groupBox_Dose.Controls.Add(this.checkBox_34μCi);
-            this.groupBox_Dose.Controls.Add(this.checkBox_10μCi);
+            this.groupBox_Dose.Controls.Add(this.radioButton_10μCi);
+            this.groupBox_Dose.Controls.Add(this.radioButton_34μCi);
+            this.groupBox_Dose.Controls.Add(this.radioButton_51μCi);
             this.groupBox_Dose.Location = new System.Drawing.Point(6, 68);
             this.groupBox_Dose.Name = "groupBox_Dose";
             this.groupBox_Dose.Size = new System.Drawing.Size(240, 42);
@@ -735,41 +687,44 @@ namespace Calibration
             this.groupBox_Dose.TabStop = false;
             this.groupBox_Dose.Text = "Radiation Dose";
             // 
-            // checkBox_51μCi
+            // radioButton_10μCi
             // 
-            this.checkBox_51μCi.AutoSize = true;
-            this.checkBox_51μCi.Location = new System.Drawing.Point(156, 20);
-            this.checkBox_51μCi.Name = "checkBox_51μCi";
-            this.checkBox_51μCi.Size = new System.Drawing.Size(55, 16);
-            this.checkBox_51μCi.TabIndex = 2;
-            this.checkBox_51μCi.Text = "51μCi";
-            this.checkBox_51μCi.UseVisualStyleBackColor = true;
+            this.radioButton_10μCi.AutoSize = true;
+            this.radioButton_10μCi.Location = new System.Drawing.Point(7, 20);
+            this.radioButton_10μCi.Name = "radioButton_10μCi";
+            this.radioButton_10μCi.Size = new System.Drawing.Size(54, 16);
+            this.radioButton_10μCi.TabIndex = 7;
+            this.radioButton_10μCi.TabStop = true;
+            this.radioButton_10μCi.Text = "10μCi";
+            this.radioButton_10μCi.UseVisualStyleBackColor = true;
             // 
-            // checkBox_34μCi
+            // radioButton_34μCi
             // 
-            this.checkBox_34μCi.AutoSize = true;
-            this.checkBox_34μCi.Location = new System.Drawing.Point(78, 19);
-            this.checkBox_34μCi.Name = "checkBox_34μCi";
-            this.checkBox_34μCi.Size = new System.Drawing.Size(55, 16);
-            this.checkBox_34μCi.TabIndex = 1;
-            this.checkBox_34μCi.Text = "34μCi";
-            this.checkBox_34μCi.UseVisualStyleBackColor = true;
+            this.radioButton_34μCi.AutoSize = true;
+            this.radioButton_34μCi.Location = new System.Drawing.Point(91, 20);
+            this.radioButton_34μCi.Name = "radioButton_34μCi";
+            this.radioButton_34μCi.Size = new System.Drawing.Size(54, 16);
+            this.radioButton_34μCi.TabIndex = 5;
+            this.radioButton_34μCi.TabStop = true;
+            this.radioButton_34μCi.Text = "34μCi";
+            this.radioButton_34μCi.UseVisualStyleBackColor = true;
             // 
-            // checkBox_10μCi
+            // radioButton_51μCi
             // 
-            this.checkBox_10μCi.AutoSize = true;
-            this.checkBox_10μCi.Location = new System.Drawing.Point(7, 20);
-            this.checkBox_10μCi.Name = "checkBox_10μCi";
-            this.checkBox_10μCi.Size = new System.Drawing.Size(55, 16);
-            this.checkBox_10μCi.TabIndex = 0;
-            this.checkBox_10μCi.Text = "10μCi";
-            this.checkBox_10μCi.UseVisualStyleBackColor = true;
+            this.radioButton_51μCi.AutoSize = true;
+            this.radioButton_51μCi.Location = new System.Drawing.Point(175, 20);
+            this.radioButton_51μCi.Name = "radioButton_51μCi";
+            this.radioButton_51μCi.Size = new System.Drawing.Size(54, 16);
+            this.radioButton_51μCi.TabIndex = 3;
+            this.radioButton_51μCi.TabStop = true;
+            this.radioButton_51μCi.Text = "51μCi";
+            this.radioButton_51μCi.UseVisualStyleBackColor = true;
             // 
             // groupBox_Distance
             // 
-            this.groupBox_Distance.Controls.Add(this.checkBox_4cm);
-            this.groupBox_Distance.Controls.Add(this.checkBox_5cm);
-            this.groupBox_Distance.Controls.Add(this.checkBox_3cm);
+            this.groupBox_Distance.Controls.Add(this.radioButton_5cm);
+            this.groupBox_Distance.Controls.Add(this.radioButton_3cm);
+            this.groupBox_Distance.Controls.Add(this.radioButton_4cm);
             this.groupBox_Distance.Location = new System.Drawing.Point(6, 20);
             this.groupBox_Distance.Name = "groupBox_Distance";
             this.groupBox_Distance.Size = new System.Drawing.Size(240, 42);
@@ -777,35 +732,36 @@ namespace Calibration
             this.groupBox_Distance.TabStop = false;
             this.groupBox_Distance.Text = "Distance";
             // 
-            // checkBox_4cm
+            // radioButton_5cm
             // 
-            this.checkBox_4cm.AutoSize = true;
-            this.checkBox_4cm.Location = new System.Drawing.Point(78, 20);
-            this.checkBox_4cm.Name = "checkBox_4cm";
-            this.checkBox_4cm.Size = new System.Drawing.Size(48, 16);
-            this.checkBox_4cm.TabIndex = 1;
-            this.checkBox_4cm.Text = "4cm";
-            this.checkBox_4cm.UseVisualStyleBackColor = true;
+            this.radioButton_5cm.AutoSize = true;
+            this.radioButton_5cm.Location = new System.Drawing.Point(175, 20);
+            this.radioButton_5cm.Name = "radioButton_5cm";
+            this.radioButton_5cm.Size = new System.Drawing.Size(47, 16);
+            this.radioButton_5cm.TabIndex = 6;
+            this.radioButton_5cm.TabStop = true;
+            this.radioButton_5cm.Text = "5cm";
+            this.radioButton_5cm.UseVisualStyleBackColor = true;
             // 
-            // checkBox_5cm
+            // radioButton_3cm
             // 
-            this.checkBox_5cm.AutoSize = true;
-            this.checkBox_5cm.Location = new System.Drawing.Point(156, 20);
-            this.checkBox_5cm.Name = "checkBox_5cm";
-            this.checkBox_5cm.Size = new System.Drawing.Size(48, 16);
-            this.checkBox_5cm.TabIndex = 2;
-            this.checkBox_5cm.Text = "5cm";
-            this.checkBox_5cm.UseVisualStyleBackColor = true;
+            this.radioButton_3cm.AutoSize = true;
+            this.radioButton_3cm.Location = new System.Drawing.Point(7, 20);
+            this.radioButton_3cm.Name = "radioButton_3cm";
+            this.radioButton_3cm.Size = new System.Drawing.Size(47, 16);
+            this.radioButton_3cm.TabIndex = 3;
+            this.radioButton_3cm.Text = "3cm";
+            this.radioButton_3cm.UseVisualStyleBackColor = true;
             // 
-            // checkBox_3cm
+            // radioButton_4cm
             // 
-            this.checkBox_3cm.AutoSize = true;
-            this.checkBox_3cm.Location = new System.Drawing.Point(7, 20);
-            this.checkBox_3cm.Name = "checkBox_3cm";
-            this.checkBox_3cm.Size = new System.Drawing.Size(48, 16);
-            this.checkBox_3cm.TabIndex = 0;
-            this.checkBox_3cm.Text = "3cm";
-            this.checkBox_3cm.UseVisualStyleBackColor = true;
+            this.radioButton_4cm.AutoSize = true;
+            this.radioButton_4cm.Location = new System.Drawing.Point(91, 20);
+            this.radioButton_4cm.Name = "radioButton_4cm";
+            this.radioButton_4cm.Size = new System.Drawing.Size(47, 16);
+            this.radioButton_4cm.TabIndex = 4;
+            this.radioButton_4cm.Text = "4cm";
+            this.radioButton_4cm.UseVisualStyleBackColor = true;
             // 
             // button_Start
             // 
@@ -817,16 +773,77 @@ namespace Calibration
             this.button_Start.TabIndex = 3;
             this.button_Start.Text = "Calibration Start";
             this.button_Start.UseVisualStyleBackColor = true;
+            this.button_Start.Click += new System.EventHandler(this.button_Start_Click);
             // 
-            // button_Save
+            // maskedTextBox1
             // 
-            this.button_Save.Location = new System.Drawing.Point(280, 401);
-            this.button_Save.Name = "button_Save";
-            this.button_Save.Size = new System.Drawing.Size(90, 23);
-            this.button_Save.TabIndex = 6;
-            this.button_Save.Text = "Save";
-            this.button_Save.UseVisualStyleBackColor = true;
-            this.button_Save.Click += new System.EventHandler(this.button_Save_Click);
+            this.maskedTextBox1.Location = new System.Drawing.Point(175, 35);
+            this.maskedTextBox1.Name = "maskedTextBox1";
+            this.maskedTextBox1.Size = new System.Drawing.Size(100, 21);
+            this.maskedTextBox1.TabIndex = 66;
+            // 
+            // maskedTextBox2
+            // 
+            this.maskedTextBox2.Location = new System.Drawing.Point(175, 65);
+            this.maskedTextBox2.Name = "maskedTextBox2";
+            this.maskedTextBox2.Size = new System.Drawing.Size(100, 21);
+            this.maskedTextBox2.TabIndex = 67;
+            // 
+            // maskedTextBox3
+            // 
+            this.maskedTextBox3.Location = new System.Drawing.Point(175, 95);
+            this.maskedTextBox3.Name = "maskedTextBox3";
+            this.maskedTextBox3.Size = new System.Drawing.Size(100, 21);
+            this.maskedTextBox3.TabIndex = 68;
+            // 
+            // maskedTextBox4
+            // 
+            this.maskedTextBox4.Location = new System.Drawing.Point(175, 125);
+            this.maskedTextBox4.Name = "maskedTextBox4";
+            this.maskedTextBox4.Size = new System.Drawing.Size(100, 21);
+            this.maskedTextBox4.TabIndex = 69;
+            // 
+            // maskedTextBox5
+            // 
+            this.maskedTextBox5.Location = new System.Drawing.Point(175, 155);
+            this.maskedTextBox5.Name = "maskedTextBox5";
+            this.maskedTextBox5.Size = new System.Drawing.Size(100, 21);
+            this.maskedTextBox5.TabIndex = 70;
+            // 
+            // maskedTextBox6
+            // 
+            this.maskedTextBox6.Location = new System.Drawing.Point(175, 185);
+            this.maskedTextBox6.Name = "maskedTextBox6";
+            this.maskedTextBox6.Size = new System.Drawing.Size(100, 21);
+            this.maskedTextBox6.TabIndex = 71;
+            // 
+            // maskedTextBox7
+            // 
+            this.maskedTextBox7.Location = new System.Drawing.Point(175, 215);
+            this.maskedTextBox7.Name = "maskedTextBox7";
+            this.maskedTextBox7.Size = new System.Drawing.Size(100, 21);
+            this.maskedTextBox7.TabIndex = 72;
+            // 
+            // maskedTextBox8
+            // 
+            this.maskedTextBox8.Location = new System.Drawing.Point(175, 245);
+            this.maskedTextBox8.Name = "maskedTextBox8";
+            this.maskedTextBox8.Size = new System.Drawing.Size(100, 21);
+            this.maskedTextBox8.TabIndex = 73;
+            // 
+            // maskedTextBox9
+            // 
+            this.maskedTextBox9.Location = new System.Drawing.Point(175, 275);
+            this.maskedTextBox9.Name = "maskedTextBox9";
+            this.maskedTextBox9.Size = new System.Drawing.Size(100, 21);
+            this.maskedTextBox9.TabIndex = 74;
+            // 
+            // maskedTextBox10
+            // 
+            this.maskedTextBox10.Location = new System.Drawing.Point(175, 305);
+            this.maskedTextBox10.Name = "maskedTextBox10";
+            this.maskedTextBox10.Size = new System.Drawing.Size(100, 21);
+            this.maskedTextBox10.TabIndex = 75;
             // 
             // Form_Main
             // 
@@ -906,13 +923,7 @@ namespace Calibration
         private System.Windows.Forms.Button button_Create;
         private System.Windows.Forms.GroupBox groupBox_Dose;
         private System.Windows.Forms.GroupBox groupBox_Distance;
-        private System.Windows.Forms.CheckBox checkBox_3cm;
         private System.Windows.Forms.Button button_Apply;
-        private System.Windows.Forms.CheckBox checkBox_51μCi;
-        private System.Windows.Forms.CheckBox checkBox_34μCi;
-        private System.Windows.Forms.CheckBox checkBox_10μCi;
-        private System.Windows.Forms.CheckBox checkBox_5cm;
-        private System.Windows.Forms.CheckBox checkBox_4cm;
         private System.Windows.Forms.TextBox textBox_Value1;
         private System.Windows.Forms.Label label_Port;
         private System.Windows.Forms.TextBox textBox_Value2;
@@ -924,16 +935,23 @@ namespace Calibration
         private System.Windows.Forms.TextBox textBox_Value8;
         private System.Windows.Forms.TextBox textBox_Value9;
         private System.Windows.Forms.TextBox textBox_Value10;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.TextBox textBox8;
-        private System.Windows.Forms.TextBox textBox9;
-        private System.Windows.Forms.TextBox textBox10;
         private System.Windows.Forms.Button button_Save;
+        private System.Windows.Forms.RadioButton radioButton_4cm;
+        private System.Windows.Forms.RadioButton radioButton_3cm;
+        private System.Windows.Forms.RadioButton radioButton_51μCi;
+        private System.Windows.Forms.RadioButton radioButton_5cm;
+        private System.Windows.Forms.RadioButton radioButton_34μCi;
+        private System.Windows.Forms.RadioButton radioButton_10μCi;
+        private System.Windows.Forms.LinkLabel linkLabel_FileName;
+        private System.Windows.Forms.MaskedTextBox maskedTextBox1;
+        private System.Windows.Forms.MaskedTextBox maskedTextBox2;
+        private System.Windows.Forms.MaskedTextBox maskedTextBox3;
+        private System.Windows.Forms.MaskedTextBox maskedTextBox4;
+        private System.Windows.Forms.MaskedTextBox maskedTextBox5;
+        private System.Windows.Forms.MaskedTextBox maskedTextBox6;
+        private System.Windows.Forms.MaskedTextBox maskedTextBox7;
+        private System.Windows.Forms.MaskedTextBox maskedTextBox8;
+        private System.Windows.Forms.MaskedTextBox maskedTextBox9;
+        private System.Windows.Forms.MaskedTextBox maskedTextBox10;
     }
 }
