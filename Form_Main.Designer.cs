@@ -43,16 +43,16 @@ namespace Calibration
             this.label_Use = new System.Windows.Forms.Label();
             this.label_DeviceName = new System.Windows.Forms.Label();
             this.label_Address = new System.Windows.Forms.Label();
-            this.checkBox_Use1 = new System.Windows.Forms.CheckBox();
-            this.checkBox_Use2 = new System.Windows.Forms.CheckBox();
-            this.checkBox_Use3 = new System.Windows.Forms.CheckBox();
-            this.checkBox_Use4 = new System.Windows.Forms.CheckBox();
-            this.checkBox_Use5 = new System.Windows.Forms.CheckBox();
-            this.checkBox_Use6 = new System.Windows.Forms.CheckBox();
-            this.checkBox_Use7 = new System.Windows.Forms.CheckBox();
-            this.checkBox_Use8 = new System.Windows.Forms.CheckBox();
-            this.checkBox_Use9 = new System.Windows.Forms.CheckBox();
-            this.checkBox_Use10 = new System.Windows.Forms.CheckBox();
+            this.checkBox_Connect1 = new System.Windows.Forms.CheckBox();
+            this.checkBox_Connect2 = new System.Windows.Forms.CheckBox();
+            this.checkBox_Connect3 = new System.Windows.Forms.CheckBox();
+            this.checkBox_Connect4 = new System.Windows.Forms.CheckBox();
+            this.checkBox_Connect5 = new System.Windows.Forms.CheckBox();
+            this.checkBox_Connect6 = new System.Windows.Forms.CheckBox();
+            this.checkBox_Connect7 = new System.Windows.Forms.CheckBox();
+            this.checkBox_Connect8 = new System.Windows.Forms.CheckBox();
+            this.checkBox_Connect9 = new System.Windows.Forms.CheckBox();
+            this.checkBox_Connect10 = new System.Windows.Forms.CheckBox();
             this.textBox_DeviceName1 = new System.Windows.Forms.TextBox();
             this.textBox_DeviceName2 = new System.Windows.Forms.TextBox();
             this.textBox_DeviceName3 = new System.Windows.Forms.TextBox();
@@ -85,6 +85,16 @@ namespace Calibration
             this.textBox_Value9 = new System.Windows.Forms.TextBox();
             this.textBox_Value10 = new System.Windows.Forms.TextBox();
             this.label_Port = new System.Windows.Forms.Label();
+            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
+            this.maskedTextBox2 = new System.Windows.Forms.MaskedTextBox();
+            this.maskedTextBox3 = new System.Windows.Forms.MaskedTextBox();
+            this.maskedTextBox4 = new System.Windows.Forms.MaskedTextBox();
+            this.maskedTextBox5 = new System.Windows.Forms.MaskedTextBox();
+            this.maskedTextBox6 = new System.Windows.Forms.MaskedTextBox();
+            this.maskedTextBox7 = new System.Windows.Forms.MaskedTextBox();
+            this.maskedTextBox8 = new System.Windows.Forms.MaskedTextBox();
+            this.maskedTextBox9 = new System.Windows.Forms.MaskedTextBox();
+            this.maskedTextBox10 = new System.Windows.Forms.MaskedTextBox();
             this.label_FileName = new System.Windows.Forms.Label();
             this.button_Connect = new System.Windows.Forms.Button();
             this.groupBox_Config = new System.Windows.Forms.GroupBox();
@@ -98,16 +108,6 @@ namespace Calibration
             this.radioButton_3cm = new System.Windows.Forms.RadioButton();
             this.radioButton_4cm = new System.Windows.Forms.RadioButton();
             this.button_Start = new System.Windows.Forms.Button();
-            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
-            this.maskedTextBox2 = new System.Windows.Forms.MaskedTextBox();
-            this.maskedTextBox3 = new System.Windows.Forms.MaskedTextBox();
-            this.maskedTextBox4 = new System.Windows.Forms.MaskedTextBox();
-            this.maskedTextBox5 = new System.Windows.Forms.MaskedTextBox();
-            this.maskedTextBox6 = new System.Windows.Forms.MaskedTextBox();
-            this.maskedTextBox7 = new System.Windows.Forms.MaskedTextBox();
-            this.maskedTextBox8 = new System.Windows.Forms.MaskedTextBox();
-            this.maskedTextBox9 = new System.Windows.Forms.MaskedTextBox();
-            this.maskedTextBox10 = new System.Windows.Forms.MaskedTextBox();
             this.menuStrip.SuspendLayout();
             this.tableLayoutPanel_Main.SuspendLayout();
             this.groupBox_FileData.SuspendLayout();
@@ -124,7 +124,7 @@ namespace Calibration
             this.ToolStripMenuItem_Help});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(504, 24);
+            this.menuStrip.Size = new System.Drawing.Size(509, 24);
             this.menuStrip.TabIndex = 0;
             // 
             // ToolStripMenuItem_File
@@ -174,7 +174,7 @@ namespace Calibration
             this.tableLayoutPanel_Main.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 436F));
             this.tableLayoutPanel_Main.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 122F));
             this.tableLayoutPanel_Main.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
-            this.tableLayoutPanel_Main.Size = new System.Drawing.Size(479, 622);
+            this.tableLayoutPanel_Main.Size = new System.Drawing.Size(484, 622);
             this.tableLayoutPanel_Main.TabIndex = 2;
             // 
             // groupBox_FileData
@@ -187,7 +187,7 @@ namespace Calibration
             this.groupBox_FileData.Controls.Add(this.button_Connect);
             this.groupBox_FileData.Location = new System.Drawing.Point(3, 3);
             this.groupBox_FileData.Name = "groupBox_FileData";
-            this.groupBox_FileData.Size = new System.Drawing.Size(472, 430);
+            this.groupBox_FileData.Size = new System.Drawing.Size(478, 430);
             this.groupBox_FileData.TabIndex = 1;
             this.groupBox_FileData.TabStop = false;
             this.groupBox_FileData.Text = "File Data";
@@ -233,16 +233,16 @@ namespace Calibration
             this.tableLayoutPanel_Data.Controls.Add(this.label_Use, 0, 0);
             this.tableLayoutPanel_Data.Controls.Add(this.label_DeviceName, 1, 0);
             this.tableLayoutPanel_Data.Controls.Add(this.label_Address, 2, 0);
-            this.tableLayoutPanel_Data.Controls.Add(this.checkBox_Use1, 0, 1);
-            this.tableLayoutPanel_Data.Controls.Add(this.checkBox_Use2, 0, 2);
-            this.tableLayoutPanel_Data.Controls.Add(this.checkBox_Use3, 0, 3);
-            this.tableLayoutPanel_Data.Controls.Add(this.checkBox_Use4, 0, 4);
-            this.tableLayoutPanel_Data.Controls.Add(this.checkBox_Use5, 0, 5);
-            this.tableLayoutPanel_Data.Controls.Add(this.checkBox_Use6, 0, 6);
-            this.tableLayoutPanel_Data.Controls.Add(this.checkBox_Use7, 0, 7);
-            this.tableLayoutPanel_Data.Controls.Add(this.checkBox_Use8, 0, 8);
-            this.tableLayoutPanel_Data.Controls.Add(this.checkBox_Use9, 0, 9);
-            this.tableLayoutPanel_Data.Controls.Add(this.checkBox_Use10, 0, 10);
+            this.tableLayoutPanel_Data.Controls.Add(this.checkBox_Connect1, 0, 1);
+            this.tableLayoutPanel_Data.Controls.Add(this.checkBox_Connect2, 0, 2);
+            this.tableLayoutPanel_Data.Controls.Add(this.checkBox_Connect3, 0, 3);
+            this.tableLayoutPanel_Data.Controls.Add(this.checkBox_Connect4, 0, 4);
+            this.tableLayoutPanel_Data.Controls.Add(this.checkBox_Connect5, 0, 5);
+            this.tableLayoutPanel_Data.Controls.Add(this.checkBox_Connect6, 0, 6);
+            this.tableLayoutPanel_Data.Controls.Add(this.checkBox_Connect7, 0, 7);
+            this.tableLayoutPanel_Data.Controls.Add(this.checkBox_Connect8, 0, 8);
+            this.tableLayoutPanel_Data.Controls.Add(this.checkBox_Connect9, 0, 9);
+            this.tableLayoutPanel_Data.Controls.Add(this.checkBox_Connect10, 0, 10);
             this.tableLayoutPanel_Data.Controls.Add(this.textBox_DeviceName1, 1, 1);
             this.tableLayoutPanel_Data.Controls.Add(this.textBox_DeviceName2, 1, 2);
             this.tableLayoutPanel_Data.Controls.Add(this.textBox_DeviceName3, 1, 3);
@@ -300,7 +300,7 @@ namespace Calibration
             this.tableLayoutPanel_Data.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel_Data.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel_Data.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel_Data.Size = new System.Drawing.Size(460, 330);
+            this.tableLayoutPanel_Data.Size = new System.Drawing.Size(466, 330);
             this.tableLayoutPanel_Data.TabIndex = 4;
             // 
             // label_Use
@@ -333,75 +333,75 @@ namespace Calibration
             this.label_Address.Text = "Mac Address";
             this.label_Address.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // checkBox_Use1
+            // checkBox_Connect1
             // 
-            this.checkBox_Use1.Location = new System.Drawing.Point(5, 35);
-            this.checkBox_Use1.Name = "checkBox_Use1";
-            this.checkBox_Use1.Size = new System.Drawing.Size(34, 24);
-            this.checkBox_Use1.TabIndex = 0;
+            this.checkBox_Connect1.Location = new System.Drawing.Point(5, 35);
+            this.checkBox_Connect1.Name = "checkBox_Connect1";
+            this.checkBox_Connect1.Size = new System.Drawing.Size(34, 24);
+            this.checkBox_Connect1.TabIndex = 0;
             // 
-            // checkBox_Use2
+            // checkBox_Connect2
             // 
-            this.checkBox_Use2.Location = new System.Drawing.Point(5, 65);
-            this.checkBox_Use2.Name = "checkBox_Use2";
-            this.checkBox_Use2.Size = new System.Drawing.Size(34, 24);
-            this.checkBox_Use2.TabIndex = 0;
+            this.checkBox_Connect2.Location = new System.Drawing.Point(5, 65);
+            this.checkBox_Connect2.Name = "checkBox_Connect2";
+            this.checkBox_Connect2.Size = new System.Drawing.Size(34, 24);
+            this.checkBox_Connect2.TabIndex = 0;
             // 
-            // checkBox_Use3
+            // checkBox_Connect3
             // 
-            this.checkBox_Use3.Location = new System.Drawing.Point(5, 95);
-            this.checkBox_Use3.Name = "checkBox_Use3";
-            this.checkBox_Use3.Size = new System.Drawing.Size(34, 24);
-            this.checkBox_Use3.TabIndex = 0;
+            this.checkBox_Connect3.Location = new System.Drawing.Point(5, 95);
+            this.checkBox_Connect3.Name = "checkBox_Connect3";
+            this.checkBox_Connect3.Size = new System.Drawing.Size(34, 24);
+            this.checkBox_Connect3.TabIndex = 0;
             // 
-            // checkBox_Use4
+            // checkBox_Connect4
             // 
-            this.checkBox_Use4.Location = new System.Drawing.Point(5, 125);
-            this.checkBox_Use4.Name = "checkBox_Use4";
-            this.checkBox_Use4.Size = new System.Drawing.Size(34, 24);
-            this.checkBox_Use4.TabIndex = 0;
+            this.checkBox_Connect4.Location = new System.Drawing.Point(5, 125);
+            this.checkBox_Connect4.Name = "checkBox_Connect4";
+            this.checkBox_Connect4.Size = new System.Drawing.Size(34, 24);
+            this.checkBox_Connect4.TabIndex = 0;
             // 
-            // checkBox_Use5
+            // checkBox_Connect5
             // 
-            this.checkBox_Use5.Location = new System.Drawing.Point(5, 155);
-            this.checkBox_Use5.Name = "checkBox_Use5";
-            this.checkBox_Use5.Size = new System.Drawing.Size(34, 24);
-            this.checkBox_Use5.TabIndex = 0;
+            this.checkBox_Connect5.Location = new System.Drawing.Point(5, 155);
+            this.checkBox_Connect5.Name = "checkBox_Connect5";
+            this.checkBox_Connect5.Size = new System.Drawing.Size(34, 24);
+            this.checkBox_Connect5.TabIndex = 0;
             // 
-            // checkBox_Use6
+            // checkBox_Connect6
             // 
-            this.checkBox_Use6.Location = new System.Drawing.Point(5, 185);
-            this.checkBox_Use6.Name = "checkBox_Use6";
-            this.checkBox_Use6.Size = new System.Drawing.Size(34, 24);
-            this.checkBox_Use6.TabIndex = 0;
+            this.checkBox_Connect6.Location = new System.Drawing.Point(5, 185);
+            this.checkBox_Connect6.Name = "checkBox_Connect6";
+            this.checkBox_Connect6.Size = new System.Drawing.Size(34, 24);
+            this.checkBox_Connect6.TabIndex = 0;
             // 
-            // checkBox_Use7
+            // checkBox_Connect7
             // 
-            this.checkBox_Use7.Location = new System.Drawing.Point(5, 215);
-            this.checkBox_Use7.Name = "checkBox_Use7";
-            this.checkBox_Use7.Size = new System.Drawing.Size(34, 24);
-            this.checkBox_Use7.TabIndex = 0;
+            this.checkBox_Connect7.Location = new System.Drawing.Point(5, 215);
+            this.checkBox_Connect7.Name = "checkBox_Connect7";
+            this.checkBox_Connect7.Size = new System.Drawing.Size(34, 24);
+            this.checkBox_Connect7.TabIndex = 0;
             // 
-            // checkBox_Use8
+            // checkBox_Connect8
             // 
-            this.checkBox_Use8.Location = new System.Drawing.Point(5, 245);
-            this.checkBox_Use8.Name = "checkBox_Use8";
-            this.checkBox_Use8.Size = new System.Drawing.Size(34, 24);
-            this.checkBox_Use8.TabIndex = 0;
+            this.checkBox_Connect8.Location = new System.Drawing.Point(5, 245);
+            this.checkBox_Connect8.Name = "checkBox_Connect8";
+            this.checkBox_Connect8.Size = new System.Drawing.Size(34, 24);
+            this.checkBox_Connect8.TabIndex = 0;
             // 
-            // checkBox_Use9
+            // checkBox_Connect9
             // 
-            this.checkBox_Use9.Location = new System.Drawing.Point(5, 275);
-            this.checkBox_Use9.Name = "checkBox_Use9";
-            this.checkBox_Use9.Size = new System.Drawing.Size(34, 24);
-            this.checkBox_Use9.TabIndex = 0;
+            this.checkBox_Connect9.Location = new System.Drawing.Point(5, 275);
+            this.checkBox_Connect9.Name = "checkBox_Connect9";
+            this.checkBox_Connect9.Size = new System.Drawing.Size(34, 24);
+            this.checkBox_Connect9.TabIndex = 0;
             // 
-            // checkBox_Use10
+            // checkBox_Connect10
             // 
-            this.checkBox_Use10.Location = new System.Drawing.Point(5, 305);
-            this.checkBox_Use10.Name = "checkBox_Use10";
-            this.checkBox_Use10.Size = new System.Drawing.Size(34, 24);
-            this.checkBox_Use10.TabIndex = 0;
+            this.checkBox_Connect10.Location = new System.Drawing.Point(5, 305);
+            this.checkBox_Connect10.Name = "checkBox_Connect10";
+            this.checkBox_Connect10.Size = new System.Drawing.Size(34, 24);
+            this.checkBox_Connect10.TabIndex = 0;
             // 
             // textBox_DeviceName1
             // 
@@ -555,9 +555,9 @@ namespace Calibration
             this.label_Value.AutoSize = true;
             this.label_Value.Location = new System.Drawing.Point(390, 2);
             this.label_Value.Name = "label_Value";
-            this.label_Value.Size = new System.Drawing.Size(65, 24);
+            this.label_Value.Size = new System.Drawing.Size(69, 12);
             this.label_Value.TabIndex = 14;
-            this.label_Value.Text = "Calibration Value";
+            this.label_Value.Text = "Convertrate";
             this.label_Value.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // textBox_Value2
@@ -633,6 +633,76 @@ namespace Calibration
             this.label_Port.Text = "Port";
             this.label_Port.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // maskedTextBox1
+            // 
+            this.maskedTextBox1.Location = new System.Drawing.Point(175, 35);
+            this.maskedTextBox1.Name = "maskedTextBox1";
+            this.maskedTextBox1.Size = new System.Drawing.Size(100, 21);
+            this.maskedTextBox1.TabIndex = 66;
+            // 
+            // maskedTextBox2
+            // 
+            this.maskedTextBox2.Location = new System.Drawing.Point(175, 65);
+            this.maskedTextBox2.Name = "maskedTextBox2";
+            this.maskedTextBox2.Size = new System.Drawing.Size(100, 21);
+            this.maskedTextBox2.TabIndex = 67;
+            // 
+            // maskedTextBox3
+            // 
+            this.maskedTextBox3.Location = new System.Drawing.Point(175, 95);
+            this.maskedTextBox3.Name = "maskedTextBox3";
+            this.maskedTextBox3.Size = new System.Drawing.Size(100, 21);
+            this.maskedTextBox3.TabIndex = 68;
+            // 
+            // maskedTextBox4
+            // 
+            this.maskedTextBox4.Location = new System.Drawing.Point(175, 125);
+            this.maskedTextBox4.Name = "maskedTextBox4";
+            this.maskedTextBox4.Size = new System.Drawing.Size(100, 21);
+            this.maskedTextBox4.TabIndex = 69;
+            // 
+            // maskedTextBox5
+            // 
+            this.maskedTextBox5.Location = new System.Drawing.Point(175, 155);
+            this.maskedTextBox5.Name = "maskedTextBox5";
+            this.maskedTextBox5.Size = new System.Drawing.Size(100, 21);
+            this.maskedTextBox5.TabIndex = 70;
+            // 
+            // maskedTextBox6
+            // 
+            this.maskedTextBox6.Location = new System.Drawing.Point(175, 185);
+            this.maskedTextBox6.Name = "maskedTextBox6";
+            this.maskedTextBox6.Size = new System.Drawing.Size(100, 21);
+            this.maskedTextBox6.TabIndex = 71;
+            // 
+            // maskedTextBox7
+            // 
+            this.maskedTextBox7.Location = new System.Drawing.Point(175, 215);
+            this.maskedTextBox7.Name = "maskedTextBox7";
+            this.maskedTextBox7.Size = new System.Drawing.Size(100, 21);
+            this.maskedTextBox7.TabIndex = 72;
+            // 
+            // maskedTextBox8
+            // 
+            this.maskedTextBox8.Location = new System.Drawing.Point(175, 245);
+            this.maskedTextBox8.Name = "maskedTextBox8";
+            this.maskedTextBox8.Size = new System.Drawing.Size(100, 21);
+            this.maskedTextBox8.TabIndex = 73;
+            // 
+            // maskedTextBox9
+            // 
+            this.maskedTextBox9.Location = new System.Drawing.Point(175, 275);
+            this.maskedTextBox9.Name = "maskedTextBox9";
+            this.maskedTextBox9.Size = new System.Drawing.Size(100, 21);
+            this.maskedTextBox9.TabIndex = 74;
+            // 
+            // maskedTextBox10
+            // 
+            this.maskedTextBox10.Location = new System.Drawing.Point(175, 305);
+            this.maskedTextBox10.Name = "maskedTextBox10";
+            this.maskedTextBox10.Size = new System.Drawing.Size(100, 21);
+            this.maskedTextBox10.TabIndex = 75;
+            // 
             // label_FileName
             // 
             this.label_FileName.AutoSize = true;
@@ -645,7 +715,7 @@ namespace Calibration
             // button_Connect
             // 
             this.button_Connect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button_Connect.Location = new System.Drawing.Point(356, 401);
+            this.button_Connect.Location = new System.Drawing.Point(362, 401);
             this.button_Connect.Name = "button_Connect";
             this.button_Connect.Size = new System.Drawing.Size(110, 23);
             this.button_Connect.TabIndex = 2;
@@ -766,7 +836,7 @@ namespace Calibration
             // button_Start
             // 
             this.button_Start.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.button_Start.Location = new System.Drawing.Point(123, 564);
+            this.button_Start.Location = new System.Drawing.Point(125, 564);
             this.button_Start.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             this.button_Start.Name = "button_Start";
             this.button_Start.Size = new System.Drawing.Size(233, 52);
@@ -775,81 +845,11 @@ namespace Calibration
             this.button_Start.UseVisualStyleBackColor = true;
             this.button_Start.Click += new System.EventHandler(this.button_Start_Click);
             // 
-            // maskedTextBox1
-            // 
-            this.maskedTextBox1.Location = new System.Drawing.Point(175, 35);
-            this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.Size = new System.Drawing.Size(100, 21);
-            this.maskedTextBox1.TabIndex = 66;
-            // 
-            // maskedTextBox2
-            // 
-            this.maskedTextBox2.Location = new System.Drawing.Point(175, 65);
-            this.maskedTextBox2.Name = "maskedTextBox2";
-            this.maskedTextBox2.Size = new System.Drawing.Size(100, 21);
-            this.maskedTextBox2.TabIndex = 67;
-            // 
-            // maskedTextBox3
-            // 
-            this.maskedTextBox3.Location = new System.Drawing.Point(175, 95);
-            this.maskedTextBox3.Name = "maskedTextBox3";
-            this.maskedTextBox3.Size = new System.Drawing.Size(100, 21);
-            this.maskedTextBox3.TabIndex = 68;
-            // 
-            // maskedTextBox4
-            // 
-            this.maskedTextBox4.Location = new System.Drawing.Point(175, 125);
-            this.maskedTextBox4.Name = "maskedTextBox4";
-            this.maskedTextBox4.Size = new System.Drawing.Size(100, 21);
-            this.maskedTextBox4.TabIndex = 69;
-            // 
-            // maskedTextBox5
-            // 
-            this.maskedTextBox5.Location = new System.Drawing.Point(175, 155);
-            this.maskedTextBox5.Name = "maskedTextBox5";
-            this.maskedTextBox5.Size = new System.Drawing.Size(100, 21);
-            this.maskedTextBox5.TabIndex = 70;
-            // 
-            // maskedTextBox6
-            // 
-            this.maskedTextBox6.Location = new System.Drawing.Point(175, 185);
-            this.maskedTextBox6.Name = "maskedTextBox6";
-            this.maskedTextBox6.Size = new System.Drawing.Size(100, 21);
-            this.maskedTextBox6.TabIndex = 71;
-            // 
-            // maskedTextBox7
-            // 
-            this.maskedTextBox7.Location = new System.Drawing.Point(175, 215);
-            this.maskedTextBox7.Name = "maskedTextBox7";
-            this.maskedTextBox7.Size = new System.Drawing.Size(100, 21);
-            this.maskedTextBox7.TabIndex = 72;
-            // 
-            // maskedTextBox8
-            // 
-            this.maskedTextBox8.Location = new System.Drawing.Point(175, 245);
-            this.maskedTextBox8.Name = "maskedTextBox8";
-            this.maskedTextBox8.Size = new System.Drawing.Size(100, 21);
-            this.maskedTextBox8.TabIndex = 73;
-            // 
-            // maskedTextBox9
-            // 
-            this.maskedTextBox9.Location = new System.Drawing.Point(175, 275);
-            this.maskedTextBox9.Name = "maskedTextBox9";
-            this.maskedTextBox9.Size = new System.Drawing.Size(100, 21);
-            this.maskedTextBox9.TabIndex = 74;
-            // 
-            // maskedTextBox10
-            // 
-            this.maskedTextBox10.Location = new System.Drawing.Point(175, 305);
-            this.maskedTextBox10.Name = "maskedTextBox10";
-            this.maskedTextBox10.Size = new System.Drawing.Size(100, 21);
-            this.maskedTextBox10.TabIndex = 75;
-            // 
             // Form_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(504, 661);
+            this.ClientSize = new System.Drawing.Size(509, 661);
             this.Controls.Add(this.tableLayoutPanel_Main);
             this.Controls.Add(this.menuStrip);
             this.MainMenuStrip = this.menuStrip;
@@ -886,16 +886,16 @@ namespace Calibration
         private System.Windows.Forms.Label label_FileName;
         private System.Windows.Forms.Button button_Start;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel_Data;
-        private System.Windows.Forms.CheckBox checkBox_Use1;
-        private System.Windows.Forms.CheckBox checkBox_Use2;
-        private System.Windows.Forms.CheckBox checkBox_Use3;
-        private System.Windows.Forms.CheckBox checkBox_Use4;
-        private System.Windows.Forms.CheckBox checkBox_Use5;
-        private System.Windows.Forms.CheckBox checkBox_Use6;
-        private System.Windows.Forms.CheckBox checkBox_Use7;
-        private System.Windows.Forms.CheckBox checkBox_Use8;
-        private System.Windows.Forms.CheckBox checkBox_Use9;
-        private System.Windows.Forms.CheckBox checkBox_Use10;
+        private System.Windows.Forms.CheckBox checkBox_Connect1;
+        private System.Windows.Forms.CheckBox checkBox_Connect2;
+        private System.Windows.Forms.CheckBox checkBox_Connect3;
+        private System.Windows.Forms.CheckBox checkBox_Connect4;
+        private System.Windows.Forms.CheckBox checkBox_Connect5;
+        private System.Windows.Forms.CheckBox checkBox_Connect6;
+        private System.Windows.Forms.CheckBox checkBox_Connect7;
+        private System.Windows.Forms.CheckBox checkBox_Connect8;
+        private System.Windows.Forms.CheckBox checkBox_Connect9;
+        private System.Windows.Forms.CheckBox checkBox_Connect10;
         private System.Windows.Forms.Label label_Use;
         private System.Windows.Forms.Label label_DeviceName;
         private System.Windows.Forms.Label label_Address;

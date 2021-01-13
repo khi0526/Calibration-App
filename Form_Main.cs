@@ -21,15 +21,15 @@ namespace Calibration
 
         private const int TOTAL_SIZE = 10;
 
-        public static string filePath;
-        public static string fileName;
-        public static int usingDevices;
+        private string FilePath;
+        private string FileName;
+        private int USING_SIZE;
         private int version;
 
+        private bool connectButtonState = true;    // Button.Text = true : Connect, false : Disconnect
         private int distanceCheckIndex = -1;
         private int doseCheckIndex = -1;
 
-        private bool connectButtonState = true;    // Button.Text = true : Connect, false : Disconnect
 
         public Form_Main()
         {
@@ -50,6 +50,10 @@ namespace Calibration
             if (FormNew.Making)
             {
                 version = 1;
+                FilePath = FormNew.FilePath;
+                FileName = FormNew.FileName;
+                USING_SIZE = FormNew.SIZE;
+
                 User = new UserInfo[TOTAL_SIZE];
                 for (var i = 0; i < TOTAL_SIZE; i++)
                 {
@@ -62,7 +66,18 @@ namespace Calibration
 
         private void ToolStripMenuItem_File_Open_Click(object sender, EventArgs e)
         {
+            /*
+            FromOpen = new Form_Open();
+            FormNew.ShowDialog();
 
+            if (FormOpen.Opning)
+            {
+                version = FormOpen.Version;
+                FilePath = FormOpen.FilePath;
+                FileName = FormOpen.FileName;
+                USING_SIZE = FormOpen.SIZE;
+            }
+            */
         }
 
         private void button_Create_Click(object sender, EventArgs e)
@@ -77,26 +92,22 @@ namespace Calibration
             ConnectCheckClickUI();
         }
 
-        private void ValueTextChanged(int index)
-        {
-            User[index].Value = Convert.ToDouble(Value[index].Text);
-        }
-
         private void button_Save_Click(object sender, EventArgs e)
         {
             bool flag = true;
+            groupBox_FileData.Focus();
 
-            for(var i = 0; i < usingDevices; i++)
+            for(var i = 0; i < USING_SIZE; i++)
             {
-                if (User[i].Address.Length < 12)
+                if (Address[i].TextLength < 12)
                 {
                     Address[i].Focus();
                     flag = false;
                     break;
                 }
-                if (User[i].Value == 0)
+                if (Convertrate[i].Text == "")
                 {
-                    Value[i].Focus();
+                    Convertrate[i].Focus();
                     flag = false;
                     break;
                 }
@@ -104,10 +115,12 @@ namespace Calibration
 
             if (flag)
             {
-                for (var i = 0; i < usingDevices; i++)
+                for (var i = 0; i < USING_SIZE; i++)
                 {
-                    if (User[i].Name == "")
-                        User[i].Name = $"Device{i + 1}";
+                    User[i].Name = DeviceName[i].Text;
+                    User[i].Address = Address[i].Text;
+                    User[i].Port = Port[i].Text;
+                    User[i].Value = Convert.ToDouble(Convertrate[i].Text);
                 }
                 SaveClickUI();
             }
@@ -117,35 +130,60 @@ namespace Calibration
         {
             if (connectButtonState)
             {
-                connectButtonState = false;
                 ConnectStartUI();
-                for(var i = 0; i < usingDevices; i++)
+                for(var i = 0; i < USING_SIZE; i++)
                 {
                     if (ConnectCheck[i].Checked)
                         User[i].Connecting = true;
                 }
+                connectButtonState = false;
+                distanceCheckIndex = 0;
+                doseCheckIndex = 0;
                 ConnectFinishUI();
             }
             else
             {
-                connectButtonState = true;
                 DisconnectStartUI();
-                for (var i = 0; i < usingDevices; i++)
+                for (var i = 0; i < USING_SIZE; i++)
                 {
                     User[i].Connecting = false;
                 }
+                connectButtonState = true;
                 DisconnectFinishUI();
             }
         }
 
         private void button_Apply_Click(object sender, EventArgs e)
         {
-            ApplyClickUI();
+            User[0].Complete[0, 0] = true;
+            for (var i = 0; i < USING_SIZE; i++)
+            {
+                if (User[i].Connecting)
+                    if (User[i].Complete[distanceCheckIndex, doseCheckIndex])
+                    {
+                        string msg = "This environment has already been calibrated.\nDo you want to recalibrate?";
+                        if (MessageBox.Show(msg,"Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                            ApplyClickUI();
+                        break;
+                    }
+            }
+            
         }
 
         private void button_Start_Click(object sender, EventArgs e)
         {
+            CalibrationStartUI();
+            //FormStart = new Form_Start();
+            //FormStart.ShowDialog();
+            for (var i = 0; i < USING_SIZE; i++)
+            {
+                if (User[i].Connecting)
+                {
 
+                    User[i].Complete[distanceCheckIndex, doseCheckIndex] = true;
+                }
+            }
+            CalibrationFinishUI();
         }
     }
 }
