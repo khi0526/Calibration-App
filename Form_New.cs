@@ -12,7 +12,12 @@ namespace Calibration
 {
     public partial class Form_New : Form
     {
-        public bool Making = false;
+        public string FileDirectory { get; private set; }
+        public string FilePath { get; private set; }
+        public string FileName { get; private set; }
+        public int SIZE { get; private set; }
+        public bool Making { get; private set; }
+
         public Form_New()
         {
             InitializeComponent();
@@ -33,6 +38,8 @@ namespace Calibration
             numericUpDown_Devices.Value = 1;
             numericUpDown_Devices.Minimum = 1;
             numericUpDown_Devices.Maximum = 10;
+
+            Making = false;
         }
 
         private void NameEnter(object sender, EventArgs e)
@@ -57,9 +64,10 @@ namespace Calibration
         {
             string time = DateTime.Now.ToString("yyyy-MM-dd");
 
-            Form_Main.filePath = $"./File/{time} {textBox_Name.Text} Ver.";
-            Form_Main.fileName = $"{time} {textBox_Name.Text} Ver.";
-            Form_Main.usingDevices = (int)numericUpDown_Devices.Value;
+            FileDirectory = $"./File/{time} {textBox_Name.Text}/";
+            FilePath = $"{FileDirectory}{textBox_Name.Text} Ver.1";
+            FileName = $"{time} {textBox_Name.Text}";
+            SIZE = (int)numericUpDown_Devices.Value;
 
             Making = true;
             this.Hide();
