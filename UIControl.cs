@@ -18,14 +18,12 @@ namespace Calibration
         private readonly string[] DistanceText = new string[3] { "3cm", "4cm", "5cm" };
         private readonly string[] DoseText = new string[3] { "10μCi", "34μCi", "51μCi" };
 
-        private bool connectCheckEnable = true;
-
         private void InitUI()
         {
             /////////////////////////////////////////////////////////////////////////////
             // Main Form
             /////////////////////////////////////////////////////////////////////////////
-            Size = new Size(520, 700);
+            Size = new Size(525, 700);
             StartPosition = FormStartPosition.CenterScreen;
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
@@ -123,7 +121,7 @@ namespace Calibration
                 Address[i].Dock = DockStyle.Fill;
                 Address[i].Enabled = false;
                 Address[i].Mask = "";
-                Address[i].Name = $"maskedTextBox_Address{i}";    //임시
+                Address[i].Name = $"maskedTextBox_Address{i+1}";    //임시
                 Address[i].Text = "";
 
                 int EventIndex = i;
@@ -156,16 +154,16 @@ namespace Calibration
             /////////////////////////////////////////////////////////////////////////////
             // CalibrationValue TextBox
             /////////////////////////////////////////////////////////////////////////////
-            Convertrate.Add(textBox_Value1);
-            Convertrate.Add(textBox_Value2);
-            Convertrate.Add(textBox_Value3);
-            Convertrate.Add(textBox_Value4);
-            Convertrate.Add(textBox_Value5);
-            Convertrate.Add(textBox_Value6);
-            Convertrate.Add(textBox_Value7);
-            Convertrate.Add(textBox_Value8);
-            Convertrate.Add(textBox_Value9);
-            Convertrate.Add(textBox_Value10);
+            Convertrate.Add(textBox_Convertrate1);
+            Convertrate.Add(textBox_Convertrate2);
+            Convertrate.Add(textBox_Convertrate3);
+            Convertrate.Add(textBox_Convertrate4);
+            Convertrate.Add(textBox_Convertrate5);
+            Convertrate.Add(textBox_Convertrate6);
+            Convertrate.Add(textBox_Convertrate7);
+            Convertrate.Add(textBox_Convertrate8);
+            Convertrate.Add(textBox_Convertrate9);
+            Convertrate.Add(textBox_Convertrate10);
 
             for (var i = 0; i < TOTAL_SIZE; i++)
             {
@@ -215,8 +213,15 @@ namespace Calibration
         {
             groupBox_FileData.Focus();
             groupBox_FileData.Enabled = true;
-            button_Save.Enabled = true;
+            groupBox_Config.Enabled = false;
             linkLabel_FileName.Text = $"{FileName} Ver.{version}";
+            button_Create.Enabled = false;
+            button_Save.Enabled = true;
+            button_Save.Text = "Save";
+            button_Connect.Enabled = false;
+            button_Connect.Text = "Connect";
+            button_Apply.Enabled = false;
+            button_Start.Enabled = false;
             button_Start.Text = "Calibration Start";
 
             for (var i = 0; i < TOTAL_SIZE; i++)
@@ -258,28 +263,34 @@ namespace Calibration
 
         private void CreateClickUI()
         {
+            groupBox_FileData.Focus();
+            groupBox_FileData.Enabled = true;
+            groupBox_Config.Enabled = false;
             linkLabel_FileName.Text = $"{FileName} Ver.{version}";
+            button_Create.Enabled = false;
             button_Save.Enabled = true;
+            button_Save.Text = "Save";
             button_Connect.Enabled = false;
+            button_Connect.Text = "Connect";
+            button_Apply.Enabled = false;
+            button_Start.Enabled = false;
+            button_Start.Text = "Calibration Start";
 
             for (var i = 0; i < USING_SIZE; i++)
             {
-                if (User[i].Using)
+                ConnectCheck[i].Checked = false;
+                ConnectCheck[i].Enabled = false;
+
+                if (Device[i].Using)
                 {
-                    ConnectCheck[i].Checked = false;
-                    ConnectCheck[i].Enabled = false;
                     Convertrate[i].ReadOnly = false;
-                }
-                else
-                {
-                    //button_Apply.
                 }
             }
         }
 
         private void DeviceNameEnter(int index)
         {
-            if (DeviceName[index].Text == $"Device{index + 1}")
+            if (DeviceName[index].Text == $"Device{index + 1}" && button_Save.Text == "Save")
             {
                 DeviceName[index].ForeColor = SystemColors.ControlText;
                 DeviceName[index].Text = "";
@@ -297,9 +308,12 @@ namespace Calibration
 
         private void AddressEnter(int index)
         {
-            Address[index].Mask = "";
+            if (button_Save.Text == "Save")
+            {
+                Address[index].Mask = "";
+            }
 
-            if (User[index].Address == "")
+            if (Address[index].Text == "AABBCCDDEEFF")
             {
                 Address[index].ForeColor = SystemColors.ControlText;
                 Address[index].Text = "";
@@ -319,12 +333,14 @@ namespace Calibration
 
         private void AddressKeyDown(KeyPressEventArgs e, int index)
         {
-            if (!(char.IsDigit(e.KeyChar) || char.IsLetter(e.KeyChar) || e.KeyChar < 91) && e.KeyChar != 8)
+            if (!(char.IsDigit(e.KeyChar) || char.IsLetter(e.KeyChar) || char.IsControl(e.KeyChar)) && e.KeyChar != 8)
                 e.Handled = true;
-            if (Address[index].TextLength == 12)
-                e.Handled = true;
+
             if (char.IsLower(e.KeyChar))
                 e.KeyChar = char.ToUpper(e.KeyChar);
+
+            if ((char.IsDigit(e.KeyChar) || char.IsLetter(e.KeyChar)) && Address[index].TextLength == 12)
+                e.Handled = true;
         }
 
         private void ValueKeyDown(KeyPressEventArgs e, int index)
@@ -342,12 +358,28 @@ namespace Calibration
             {
                 ConnectCheck[i].Enabled = true;
                 DeviceName[i].ReadOnly = true;
+                DeviceName[i].ForeColor = SystemColors.ControlText;
                 Address[i].ReadOnly = true;
+                Address[i].ForeColor = SystemColors.ControlText;
                 Convertrate[i].ReadOnly = true;
             }
-
-            button_Save.Enabled = false;
+            button_Save.Text = "Edit";
             button_Create.Enabled = true;
+            ConnectCheckClickUI();
+        }
+
+        private void EditClickUI()
+        {
+            for (var i = 0; i < USING_SIZE; i++)
+            {
+                ConnectCheck[i].Enabled = false;
+                DeviceName[i].ReadOnly = false;
+                Address[i].ReadOnly = false;
+                Convertrate[i].ReadOnly = false;
+            }
+            button_Save.Text = "Save";
+            button_Create.Enabled = false;
+            button_Connect.Enabled = false;
         }
 
         private void ConnectCheckClickUI()
@@ -387,7 +419,7 @@ namespace Calibration
         {
             this.Text = "Connecting...";
             this.UseWaitCursor = true;
-            button_Connect.Enabled = false;
+            groupBox_FileData.Enabled = false;
             button_Connect.Text = "Connecting...";
 
             for (var i = 0; i < USING_SIZE; i++)
@@ -398,12 +430,12 @@ namespace Calibration
             for (var i = 0; i < 3; i++)
             {
                 Distance[i].Checked = false;
-                if (User[i].Complete[0, i] && User[i].Complete[1, i] && User[i].Complete[2, i])
+                if (Device[i].Complete[0, i] && Device[i].Complete[1, i] && Device[i].Complete[2, i])
                     Distance[i].Text = DistanceText[i];
                 else
                     Distance[i].Text = "*" + DistanceText[i];
                 Dose[i].Checked = false;
-                if (User[i].Complete[i, 0] && User[i].Complete[i, 1] && User[i].Complete[i, 2])
+                if (Device[i].Complete[i, 0] && Device[i].Complete[i, 1] && Device[i].Complete[i, 2])
                     Dose[i].Text = DoseText[i];
                 else
                     Dose[i].Text = "*" + DoseText[i];
@@ -414,7 +446,8 @@ namespace Calibration
         {
             this.Text = "Calibration App";
             this.UseWaitCursor = false;
-            button_Connect.Enabled = true;
+            groupBox_FileData.Enabled = true;
+            button_Create.Enabled = false;
             button_Connect.Text = "Disconnect";
             groupBox_Config.Enabled = true;
             Distance[0].Checked = true;
@@ -425,15 +458,19 @@ namespace Calibration
         {
             this.Text = "Disconnecting...";
             this.UseWaitCursor = true;
-            button_Connect.Enabled = false;
+            groupBox_FileData.Enabled = false;
             button_Connect.Text = "Disconnecting...";
             groupBox_Config.Enabled = false;
 
             for(var i = 0; i < 3; i++)
             {
                 Distance[i].Checked = false;
-                Distance[i].Text = DistanceText[i];
                 Dose[i].Checked = false;
+            }
+
+            for (var i = 0; i < 3; i++)
+            {
+                Distance[i].Text = DistanceText[i];
                 Dose[i].Text = DoseText[i];
             }
         }
@@ -442,7 +479,8 @@ namespace Calibration
         {
             this.Text = "Calibration App";
             this.UseWaitCursor = false;
-            button_Connect.Enabled = true;
+            button_Create.Enabled = true;
+            groupBox_FileData.Enabled = true;
             button_Connect.Text = "Connect";
 
             for (var i = 0; i < USING_SIZE; i++)
@@ -455,17 +493,17 @@ namespace Calibration
         {
             for (var i = 0; i < USING_SIZE; i++)
             {
-                if (!User[i].Connecting)
+                if (!Device[i].Connecting)
                     continue;
 
                 for (var j = 0; j < 3; j++)
                 {
-                    if (User[i].Complete[distanceCheckIndex, j])
+                    if (Device[i].Complete[distanceCheckIndex, j])
                         Dose[j].Text = DoseText[j];
                     else
                         Dose[j].Text = "*" + DoseText[j];
 
-                    if (User[i].Complete[j, doseCheckIndex])
+                    if (Device[i].Complete[j, doseCheckIndex])
                         Distance[j].Text = DistanceText[j];
                     else
                         Distance[j].Text = "*" + DistanceText[j];

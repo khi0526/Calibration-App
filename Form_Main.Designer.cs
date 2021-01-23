@@ -73,17 +73,17 @@ namespace Calibration
             this.comboBox_Port8 = new System.Windows.Forms.ComboBox();
             this.comboBox_Port9 = new System.Windows.Forms.ComboBox();
             this.comboBox_Port10 = new System.Windows.Forms.ComboBox();
-            this.textBox_Value1 = new System.Windows.Forms.TextBox();
+            this.textBox_Convertrate1 = new System.Windows.Forms.TextBox();
             this.label_Value = new System.Windows.Forms.Label();
-            this.textBox_Value2 = new System.Windows.Forms.TextBox();
-            this.textBox_Value3 = new System.Windows.Forms.TextBox();
-            this.textBox_Value4 = new System.Windows.Forms.TextBox();
-            this.textBox_Value5 = new System.Windows.Forms.TextBox();
-            this.textBox_Value6 = new System.Windows.Forms.TextBox();
-            this.textBox_Value7 = new System.Windows.Forms.TextBox();
-            this.textBox_Value8 = new System.Windows.Forms.TextBox();
-            this.textBox_Value9 = new System.Windows.Forms.TextBox();
-            this.textBox_Value10 = new System.Windows.Forms.TextBox();
+            this.textBox_Convertrate2 = new System.Windows.Forms.TextBox();
+            this.textBox_Convertrate3 = new System.Windows.Forms.TextBox();
+            this.textBox_Convertrate4 = new System.Windows.Forms.TextBox();
+            this.textBox_Convertrate5 = new System.Windows.Forms.TextBox();
+            this.textBox_Convertrate6 = new System.Windows.Forms.TextBox();
+            this.textBox_Convertrate7 = new System.Windows.Forms.TextBox();
+            this.textBox_Convertrate8 = new System.Windows.Forms.TextBox();
+            this.textBox_Convertrate9 = new System.Windows.Forms.TextBox();
+            this.textBox_Convertrate10 = new System.Windows.Forms.TextBox();
             this.label_Port = new System.Windows.Forms.Label();
             this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
             this.maskedTextBox2 = new System.Windows.Forms.MaskedTextBox();
@@ -204,7 +204,8 @@ namespace Calibration
             // 
             // button_Save
             // 
-            this.button_Save.Location = new System.Drawing.Point(240, 401);
+            this.button_Save.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button_Save.Location = new System.Drawing.Point(246, 401);
             this.button_Save.Name = "button_Save";
             this.button_Save.Size = new System.Drawing.Size(110, 23);
             this.button_Save.TabIndex = 6;
@@ -214,6 +215,7 @@ namespace Calibration
             // 
             // button_Create
             // 
+            this.button_Create.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button_Create.Location = new System.Drawing.Point(6, 20);
             this.button_Create.Name = "button_Create";
             this.button_Create.Size = new System.Drawing.Size(112, 23);
@@ -263,17 +265,17 @@ namespace Calibration
             this.tableLayoutPanel_Data.Controls.Add(this.comboBox_Port8, 3, 8);
             this.tableLayoutPanel_Data.Controls.Add(this.comboBox_Port9, 3, 9);
             this.tableLayoutPanel_Data.Controls.Add(this.comboBox_Port10, 3, 10);
-            this.tableLayoutPanel_Data.Controls.Add(this.textBox_Value1, 4, 1);
+            this.tableLayoutPanel_Data.Controls.Add(this.textBox_Convertrate1, 4, 1);
             this.tableLayoutPanel_Data.Controls.Add(this.label_Value, 4, 0);
-            this.tableLayoutPanel_Data.Controls.Add(this.textBox_Value2, 4, 2);
-            this.tableLayoutPanel_Data.Controls.Add(this.textBox_Value3, 4, 3);
-            this.tableLayoutPanel_Data.Controls.Add(this.textBox_Value4, 4, 4);
-            this.tableLayoutPanel_Data.Controls.Add(this.textBox_Value5, 4, 5);
-            this.tableLayoutPanel_Data.Controls.Add(this.textBox_Value6, 4, 6);
-            this.tableLayoutPanel_Data.Controls.Add(this.textBox_Value7, 4, 7);
-            this.tableLayoutPanel_Data.Controls.Add(this.textBox_Value8, 4, 8);
-            this.tableLayoutPanel_Data.Controls.Add(this.textBox_Value9, 4, 9);
-            this.tableLayoutPanel_Data.Controls.Add(this.textBox_Value10, 4, 10);
+            this.tableLayoutPanel_Data.Controls.Add(this.textBox_Convertrate2, 4, 2);
+            this.tableLayoutPanel_Data.Controls.Add(this.textBox_Convertrate3, 4, 3);
+            this.tableLayoutPanel_Data.Controls.Add(this.textBox_Convertrate4, 4, 4);
+            this.tableLayoutPanel_Data.Controls.Add(this.textBox_Convertrate5, 4, 5);
+            this.tableLayoutPanel_Data.Controls.Add(this.textBox_Convertrate6, 4, 6);
+            this.tableLayoutPanel_Data.Controls.Add(this.textBox_Convertrate7, 4, 7);
+            this.tableLayoutPanel_Data.Controls.Add(this.textBox_Convertrate8, 4, 8);
+            this.tableLayoutPanel_Data.Controls.Add(this.textBox_Convertrate9, 4, 9);
+            this.tableLayoutPanel_Data.Controls.Add(this.textBox_Convertrate10, 4, 10);
             this.tableLayoutPanel_Data.Controls.Add(this.label_Port, 3, 0);
             this.tableLayoutPanel_Data.Controls.Add(this.maskedTextBox1, 2, 1);
             this.tableLayoutPanel_Data.Controls.Add(this.maskedTextBox2, 2, 2);
@@ -543,12 +545,12 @@ namespace Calibration
             this.comboBox_Port10.Size = new System.Drawing.Size(64, 20);
             this.comboBox_Port10.TabIndex = 34;
             // 
-            // textBox_Value1
+            // textBox_Convertrate1
             // 
-            this.textBox_Value1.Location = new System.Drawing.Point(390, 35);
-            this.textBox_Value1.Name = "textBox_Value1";
-            this.textBox_Value1.Size = new System.Drawing.Size(65, 21);
-            this.textBox_Value1.TabIndex = 45;
+            this.textBox_Convertrate1.Location = new System.Drawing.Point(390, 35);
+            this.textBox_Convertrate1.Name = "textBox_Convertrate1";
+            this.textBox_Convertrate1.Size = new System.Drawing.Size(65, 21);
+            this.textBox_Convertrate1.TabIndex = 45;
             // 
             // label_Value
             // 
@@ -560,68 +562,68 @@ namespace Calibration
             this.label_Value.Text = "Convertrate";
             this.label_Value.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // textBox_Value2
+            // textBox_Convertrate2
             // 
-            this.textBox_Value2.Location = new System.Drawing.Point(390, 65);
-            this.textBox_Value2.Name = "textBox_Value2";
-            this.textBox_Value2.Size = new System.Drawing.Size(65, 21);
-            this.textBox_Value2.TabIndex = 47;
+            this.textBox_Convertrate2.Location = new System.Drawing.Point(390, 65);
+            this.textBox_Convertrate2.Name = "textBox_Convertrate2";
+            this.textBox_Convertrate2.Size = new System.Drawing.Size(65, 21);
+            this.textBox_Convertrate2.TabIndex = 47;
             // 
-            // textBox_Value3
+            // textBox_Convertrate3
             // 
-            this.textBox_Value3.Location = new System.Drawing.Point(390, 95);
-            this.textBox_Value3.Name = "textBox_Value3";
-            this.textBox_Value3.Size = new System.Drawing.Size(65, 21);
-            this.textBox_Value3.TabIndex = 48;
+            this.textBox_Convertrate3.Location = new System.Drawing.Point(390, 95);
+            this.textBox_Convertrate3.Name = "textBox_Convertrate3";
+            this.textBox_Convertrate3.Size = new System.Drawing.Size(65, 21);
+            this.textBox_Convertrate3.TabIndex = 48;
             // 
-            // textBox_Value4
+            // textBox_Convertrate4
             // 
-            this.textBox_Value4.Location = new System.Drawing.Point(390, 125);
-            this.textBox_Value4.Name = "textBox_Value4";
-            this.textBox_Value4.Size = new System.Drawing.Size(65, 21);
-            this.textBox_Value4.TabIndex = 49;
+            this.textBox_Convertrate4.Location = new System.Drawing.Point(390, 125);
+            this.textBox_Convertrate4.Name = "textBox_Convertrate4";
+            this.textBox_Convertrate4.Size = new System.Drawing.Size(65, 21);
+            this.textBox_Convertrate4.TabIndex = 49;
             // 
-            // textBox_Value5
+            // textBox_Convertrate5
             // 
-            this.textBox_Value5.Location = new System.Drawing.Point(390, 155);
-            this.textBox_Value5.Name = "textBox_Value5";
-            this.textBox_Value5.Size = new System.Drawing.Size(65, 21);
-            this.textBox_Value5.TabIndex = 50;
+            this.textBox_Convertrate5.Location = new System.Drawing.Point(390, 155);
+            this.textBox_Convertrate5.Name = "textBox_Convertrate5";
+            this.textBox_Convertrate5.Size = new System.Drawing.Size(65, 21);
+            this.textBox_Convertrate5.TabIndex = 50;
             // 
-            // textBox_Value6
+            // textBox_Convertrate6
             // 
-            this.textBox_Value6.Location = new System.Drawing.Point(390, 185);
-            this.textBox_Value6.Name = "textBox_Value6";
-            this.textBox_Value6.Size = new System.Drawing.Size(65, 21);
-            this.textBox_Value6.TabIndex = 51;
+            this.textBox_Convertrate6.Location = new System.Drawing.Point(390, 185);
+            this.textBox_Convertrate6.Name = "textBox_Convertrate6";
+            this.textBox_Convertrate6.Size = new System.Drawing.Size(65, 21);
+            this.textBox_Convertrate6.TabIndex = 51;
             // 
-            // textBox_Value7
+            // textBox_Convertrate7
             // 
-            this.textBox_Value7.Location = new System.Drawing.Point(390, 215);
-            this.textBox_Value7.Name = "textBox_Value7";
-            this.textBox_Value7.Size = new System.Drawing.Size(65, 21);
-            this.textBox_Value7.TabIndex = 52;
+            this.textBox_Convertrate7.Location = new System.Drawing.Point(390, 215);
+            this.textBox_Convertrate7.Name = "textBox_Convertrate7";
+            this.textBox_Convertrate7.Size = new System.Drawing.Size(65, 21);
+            this.textBox_Convertrate7.TabIndex = 52;
             // 
-            // textBox_Value8
+            // textBox_Convertrate8
             // 
-            this.textBox_Value8.Location = new System.Drawing.Point(390, 245);
-            this.textBox_Value8.Name = "textBox_Value8";
-            this.textBox_Value8.Size = new System.Drawing.Size(65, 21);
-            this.textBox_Value8.TabIndex = 53;
+            this.textBox_Convertrate8.Location = new System.Drawing.Point(390, 245);
+            this.textBox_Convertrate8.Name = "textBox_Convertrate8";
+            this.textBox_Convertrate8.Size = new System.Drawing.Size(65, 21);
+            this.textBox_Convertrate8.TabIndex = 53;
             // 
-            // textBox_Value9
+            // textBox_Convertrate9
             // 
-            this.textBox_Value9.Location = new System.Drawing.Point(390, 275);
-            this.textBox_Value9.Name = "textBox_Value9";
-            this.textBox_Value9.Size = new System.Drawing.Size(65, 21);
-            this.textBox_Value9.TabIndex = 54;
+            this.textBox_Convertrate9.Location = new System.Drawing.Point(390, 275);
+            this.textBox_Convertrate9.Name = "textBox_Convertrate9";
+            this.textBox_Convertrate9.Size = new System.Drawing.Size(65, 21);
+            this.textBox_Convertrate9.TabIndex = 54;
             // 
-            // textBox_Value10
+            // textBox_Convertrate10
             // 
-            this.textBox_Value10.Location = new System.Drawing.Point(390, 305);
-            this.textBox_Value10.Name = "textBox_Value10";
-            this.textBox_Value10.Size = new System.Drawing.Size(65, 21);
-            this.textBox_Value10.TabIndex = 55;
+            this.textBox_Convertrate10.Location = new System.Drawing.Point(390, 305);
+            this.textBox_Convertrate10.Name = "textBox_Convertrate10";
+            this.textBox_Convertrate10.Size = new System.Drawing.Size(65, 21);
+            this.textBox_Convertrate10.TabIndex = 55;
             // 
             // label_Port
             // 
@@ -715,6 +717,7 @@ namespace Calibration
             // button_Connect
             // 
             this.button_Connect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button_Connect.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button_Connect.Location = new System.Drawing.Point(362, 401);
             this.button_Connect.Name = "button_Connect";
             this.button_Connect.Size = new System.Drawing.Size(110, 23);
@@ -730,14 +733,15 @@ namespace Calibration
             this.groupBox_Config.Controls.Add(this.groupBox_Distance);
             this.groupBox_Config.Location = new System.Drawing.Point(3, 439);
             this.groupBox_Config.Name = "groupBox_Config";
-            this.groupBox_Config.Size = new System.Drawing.Size(472, 116);
+            this.groupBox_Config.Size = new System.Drawing.Size(478, 116);
             this.groupBox_Config.TabIndex = 2;
             this.groupBox_Config.TabStop = false;
             this.groupBox_Config.Text = "Calibration Config";
             // 
             // button_Apply
             // 
-            this.button_Apply.Location = new System.Drawing.Point(356, 87);
+            this.button_Apply.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button_Apply.Location = new System.Drawing.Point(362, 85);
             this.button_Apply.Name = "button_Apply";
             this.button_Apply.Size = new System.Drawing.Size(110, 23);
             this.button_Apply.TabIndex = 2;
@@ -836,6 +840,7 @@ namespace Calibration
             // button_Start
             // 
             this.button_Start.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.button_Start.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button_Start.Location = new System.Drawing.Point(125, 564);
             this.button_Start.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             this.button_Start.Name = "button_Start";
@@ -924,17 +929,17 @@ namespace Calibration
         private System.Windows.Forms.GroupBox groupBox_Dose;
         private System.Windows.Forms.GroupBox groupBox_Distance;
         private System.Windows.Forms.Button button_Apply;
-        private System.Windows.Forms.TextBox textBox_Value1;
+        private System.Windows.Forms.TextBox textBox_Convertrate1;
         private System.Windows.Forms.Label label_Port;
-        private System.Windows.Forms.TextBox textBox_Value2;
-        private System.Windows.Forms.TextBox textBox_Value3;
-        private System.Windows.Forms.TextBox textBox_Value4;
-        private System.Windows.Forms.TextBox textBox_Value5;
-        private System.Windows.Forms.TextBox textBox_Value6;
-        private System.Windows.Forms.TextBox textBox_Value7;
-        private System.Windows.Forms.TextBox textBox_Value8;
-        private System.Windows.Forms.TextBox textBox_Value9;
-        private System.Windows.Forms.TextBox textBox_Value10;
+        private System.Windows.Forms.TextBox textBox_Convertrate2;
+        private System.Windows.Forms.TextBox textBox_Convertrate3;
+        private System.Windows.Forms.TextBox textBox_Convertrate4;
+        private System.Windows.Forms.TextBox textBox_Convertrate5;
+        private System.Windows.Forms.TextBox textBox_Convertrate6;
+        private System.Windows.Forms.TextBox textBox_Convertrate7;
+        private System.Windows.Forms.TextBox textBox_Convertrate8;
+        private System.Windows.Forms.TextBox textBox_Convertrate9;
+        private System.Windows.Forms.TextBox textBox_Convertrate10;
         private System.Windows.Forms.Button button_Save;
         private System.Windows.Forms.RadioButton radioButton_4cm;
         private System.Windows.Forms.RadioButton radioButton_3cm;

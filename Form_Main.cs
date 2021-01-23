@@ -14,10 +14,10 @@ namespace Calibration
     {
         private Form_New FormNew;
         //private Form_Open FormOpen;
-        //private Form_Create FormCreate;
-        //private Form_Calibration FormCalibration;
+        private Form_Create FormCreate;
+        private Form_Start FormStart;
 
-        private UserInfo[] User;
+        private DeviceInfo[] Device;
 
         private const int TOTAL_SIZE = 10;
 
@@ -26,7 +26,7 @@ namespace Calibration
         private int USING_SIZE;
         private int version;
 
-        private bool connectButtonState = true;    // Button.Text = true : Connect, false : Disconnect
+        private readonly List<int> connectingDeviceIndex = new List<int>();
         private int distanceCheckIndex = -1;
         private int doseCheckIndex = -1;
 
@@ -54,12 +54,13 @@ namespace Calibration
                 FileName = FormNew.FileName;
                 USING_SIZE = FormNew.SIZE;
 
-                User = new UserInfo[TOTAL_SIZE];
+                Device = new DeviceInfo[TOTAL_SIZE];
                 for (var i = 0; i < TOTAL_SIZE; i++)
                 {
-                    User[i] = new UserInfo();
+                    Device[i] = new DeviceInfo();
+                    if (i < USING_SIZE)
+                        Device[i].Using = true;
                 }
-
                 NewFileUI();
             }
         }
@@ -82,108 +83,141 @@ namespace Calibration
 
         private void button_Create_Click(object sender, EventArgs e)
         {
-            version++;
-            CreateClickUI();
+            string[] DeviceNames = new string[USING_SIZE];
+            for (var i = 0; i < USING_SIZE; i++)
+                DeviceNames[i] = Device[i].Name;
+
+            FormCreate = new Form_Create(FileName, version, USING_SIZE, DeviceNames);
+            FormCreate.ShowDialog();
+
+            if (FormCreate.Creating)
+            {
+                version++;
+                CreateClickUI();
+            }
         }
 
         private void ConnectCheck_ClickChanged(int index)
         {
-            User[index].Connecting = !User[index].Connecting;
+            Device[index].Connecting = !Device[index].Connecting;
             ConnectCheckClickUI();
         }
 
         private void button_Save_Click(object sender, EventArgs e)
         {
-            bool flag = true;
+            bool isDone = true;
             groupBox_FileData.Focus();
 
-            for(var i = 0; i < USING_SIZE; i++)
+            switch (button_Save.Text)
             {
-                if (Address[i].TextLength < 12)
-                {
-                    Address[i].Focus();
-                    flag = false;
-                    break;
-                }
-                if (Convertrate[i].Text == "")
-                {
-                    Convertrate[i].Focus();
-                    flag = false;
-                    break;
-                }
-            }
+                case "Save":
+                    {
+                        for (var i = 0; i < USING_SIZE; i++)
+                        {
+                            if (!Address[i].MaskFull || Address[i].Text == "AA:BB:CC:DD:EE:FF")
+                            {
+                                Address[i].Focus();
+                                isDone = false;
+                                break;
+                            }
+                            if (Convertrate[i].Text == "")
+                            {
+                                Convertrate[i].Focus();
+                                isDone = false;
+                                break;
+                            }
+                        }
 
-            if (flag)
-            {
-                for (var i = 0; i < USING_SIZE; i++)
-                {
-                    User[i].Name = DeviceName[i].Text;
-                    User[i].Address = Address[i].Text;
-                    User[i].Port = Port[i].Text;
-                    User[i].Value = Convert.ToDouble(Convertrate[i].Text);
-                }
-                SaveClickUI();
+                        if (isDone)
+                        {
+                            for (var i = 0; i < USING_SIZE; i++)
+                            {
+                                Device[i].Name = DeviceName[i].Text;
+                                Device[i].Address = Address[i].Text;
+                                Device[i].Port = Port[i].Text;
+                                Device[i].Value = Convert.ToDouble(Convertrate[i].Text);
+                            }
+                            SaveClickUI();
+                        }
+                        break;
+                    }
+                case "Edit":
+                    {
+                        EditClickUI();
+                        break;
+                    }
             }
         }
 
         private void button_Connect_Click(object sender, EventArgs e)
         {
-            if (connectButtonState)
+            switch (button_Connect.Text)
             {
-                ConnectStartUI();
-                for(var i = 0; i < USING_SIZE; i++)
-                {
-                    if (ConnectCheck[i].Checked)
-                        User[i].Connecting = true;
-                }
-                connectButtonState = false;
-                distanceCheckIndex = 0;
-                doseCheckIndex = 0;
-                ConnectFinishUI();
-            }
-            else
-            {
-                DisconnectStartUI();
-                for (var i = 0; i < USING_SIZE; i++)
-                {
-                    User[i].Connecting = false;
-                }
-                connectButtonState = true;
-                DisconnectFinishUI();
+                case "Connect":
+                    {
+                        ConnectStartUI();
+                        for (var i = 0; i < USING_SIZE; i++)
+                        {
+                            if (ConnectCheck[i].Checked)
+                            {
+                                connectingDeviceIndex.Add(i);
+                                Device[i].Connecting = true;
+                            }
+                        }
+                        distanceCheckIndex = 0;
+                        doseCheckIndex = 0;
+                        ConnectFinishUI();
+                        break;
+                    }
+                case "Disconnect":
+                    {
+                        DisconnectStartUI();
+                        for (var i = 0; i < USING_SIZE; i++)
+                        {
+                            connectingDeviceIndex.Clear();
+                            Device[i].Connecting = false;
+                        }
+                        DisconnectFinishUI();
+                        break;
+                    }
             }
         }
 
         private void button_Apply_Click(object sender, EventArgs e)
         {
-            User[0].Complete[0, 0] = true;
-            for (var i = 0; i < USING_SIZE; i++)
+            for (var i = 0; i < connectingDeviceIndex.Count; i++)
             {
-                if (User[i].Connecting)
-                    if (User[i].Complete[distanceCheckIndex, doseCheckIndex])
-                    {
-                        string msg = "This environment has already been calibrated.\nDo you want to recalibrate?";
-                        if (MessageBox.Show(msg,"Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                            ApplyClickUI();
-                        break;
-                    }
+                if (Device[connectingDeviceIndex[i]].Complete[distanceCheckIndex, doseCheckIndex])
+                {
+                    string msg = $"{Device[i].Name} has already been measured\nin the selected environment.\nDo you want to recalibrate?";
+                    if (MessageBox.Show(msg, "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                        return;
+                    break;
+                }
             }
             
+            ApplyClickUI();
         }
 
         private void button_Start_Click(object sender, EventArgs e)
         {
             CalibrationStartUI();
-            //FormStart = new Form_Start();
-            //FormStart.ShowDialog();
-            for (var i = 0; i < USING_SIZE; i++)
-            {
-                if (User[i].Connecting)
-                {
+            FormStart = new Form_Start();
+            FormStart.ShowDialog();
 
-                    User[i].Complete[distanceCheckIndex, doseCheckIndex] = true;
+            string startTime = FormStart.StartTime;
+            string finishTime = FormStart.FinishTime;
+            if (FormStart.IsComplete)
+            {
+                for (var i = 0; i < USING_SIZE; i++)
+                {
+                    if (Device[i].Connecting)
+                    {
+                        Device[i].Complete[distanceCheckIndex, doseCheckIndex] = true;
+                    }
                 }
+                CalibrationFinishUI();
             }
-            CalibrationFinishUI();
         }
     }
 }
