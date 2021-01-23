@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Calibration
@@ -20,12 +14,8 @@ namespace Calibration
 
         public Form_New()
         {
-            InitializeComponent();
-            Init();
-        }
+            InitializeComponent(); 
 
-        private void Init()
-        {
             this.ControlBox = false;
             FormBorderStyle = FormBorderStyle.FixedSingle;
             StartPosition = FormStartPosition.CenterParent;
@@ -70,12 +60,9 @@ namespace Calibration
             SIZE = (int)numericUpDown_Devices.Value;
 
             Making = true;
-            this.Hide();
+            Close();
         }
 
-        private void button_Cancel_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-        }
+        private void button_Cancel_Click(object sender, EventArgs e) => Close();            
     }
 }
